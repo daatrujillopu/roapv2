@@ -11,6 +11,9 @@ $this->load->view("layouts/main/sidebar");
 $this->load->view("layouts/main/search_bar");
 $this->load->view("layouts/main/objects_container");
 //$this->load->view("templates/user/oas");
+if($authorized_upload=="yes"){
+    $this->load->view("layouts/main/upload_wizard_form");
+}
 $this->load->view($main);
 $this->load->view("layouts/main/footer");
 ?>

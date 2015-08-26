@@ -36,4 +36,33 @@ class Main extends CI_Controller{
         $this->load->view("layouts/main_template", $content);
     }
 
+    public function oas_objects_per_collection($id_collection)
+    {
+        $content = array(
+            "metadatos" => $this->standard->get_metadata_to_show($id_collection),
+            "hide_metadatos" => $this->standard->get_show_hide_metadata(),
+            "oas_user" => $this->standard->get_own_users_oas(),
+            "listas" => "",
+            "authorized_upload" => "yes",
+            "collections" => $this->admin_model->get_collections_list(),
+            "subcollections" => $this->admin_model->get_subcollections_list(),
+            "main" => "main/main_filter_collection"
+        );
+        $this->load->view("layouts/main_template", $content);
+    }
+    public function oas_objects_per_subcollection($id_collection, $id_subcollection)
+    {
+        $content = array(
+            "metadatos" => $this->standard->get_metadata_to_show($id_collection, $id_subcollection),
+            "hide_metadatos" => $this->standard->get_show_hide_metadata(),
+            "oas_user" => $this->standard->get_own_users_oas(),
+            "listas" => "",
+            "collections" => $this->admin_model->get_collections_list(),
+            "subcollections" => $this->admin_model->get_subcollections_list(),
+            "main" => "main/main_filter_collection"
+        );
+
+        $this->load->view("layouts/main_template", $content);
+    }
+
 }

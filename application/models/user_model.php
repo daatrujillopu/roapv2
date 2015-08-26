@@ -262,9 +262,15 @@ class User_model extends CI_Model{
     }
 //*********************************Consultas a la bd*************************************
 
-    public function get_existing_oas(){
+    public function get_existing_oas($filterco = "0", $filtersub = "0"){
         $this->db->select("id_oa");
         $this->db->from("oas");
+        if($filterco!="0"&&$filtersub=="0"){
+            $this->db->where("idcollection", $filterco);
+        }elseif($filterco!="0"&&$filtersub!="0"){
+            $this->db->where("idcollection", $filterco);
+            $this->db->where("idsubcollection", $filtersub);
+        }
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -321,6 +327,7 @@ class User_model extends CI_Model{
     }
 
     public function get_show_metadata(){
+
         $query = $this->db->get_where("metadatos", array("mostrar" => "true"));
         return $query->result_array();
     }

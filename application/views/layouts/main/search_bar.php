@@ -14,6 +14,6 @@
                     <label style="display:none;" for="search_objects"> Busqueda</label>
 
                     <input type="text" id="search_objects" class="form-control" >
-                    <span class=" input-group-btn "><i><button class="btn btn-success btn btn-success"><!--<php echo $this->lang->line("search_button")?>--></button></i></span>
+                    <span class=" input-group-btn "><i><button class="btn btn-success btn btn-success">Buscar</button></i></span>
         </div>
     </div>

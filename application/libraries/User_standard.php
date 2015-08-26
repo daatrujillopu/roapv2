@@ -592,11 +592,21 @@ class User_standard
 
 
 
-    public function get_metadata_to_show()
+    public function get_metadata_to_show($collection= "0", $subcollection = "0")
     {
-        $metadatashow = $this->CI->user_model->get_show_metadata();
+
+            $metadatashow = $this->CI->user_model->get_show_metadata();
+
+
         //print_r($metadatashow);
-        $oas = $this->CI->user_model->get_existing_oas();
+
+        if($collection=="0"&&$subcollection=="0"){
+            $oas = $this->CI->user_model->get_existing_oas();
+        }elseif($collection!="0"&&$subcollection=="0"){
+            $oas = $this->CI->user_model->get_existing_oas($collection);
+        }elseif($collection!="0"&&$subcollection!="0"){
+            $oas = $this->CI->user_model->get_existing_oas($collection, $subcollection);
+        }
         $returnmetadata = array();
         $returnmetadata2 = array();
         $dato = "";
