@@ -1,0 +1,261 @@
+<?php
+
+
+
+/**
+ * Clase que maneja el estandar dado por el Usuario
+ *
+ * @Autor Danny Alenxander Trujillo
+ * @Package Libreria
+ * @SubPackage Estandar Usuario
+ */
+
+class User_standard {
+    /**
+     * @var object $CI esta variable es la herencia de la clase proporcionada por Codeigniter
+     */
+    private $CI;
+    /**
+     * @var array $tree_standard Esta variable toma la estructura del estandar proporcionado por el usuario
+     */
+    private $tree_standard;
+    /**
+     * @var array $spadres corresponde a un array con el nombre de los padres que no tienen mas padres
+     */
+    private $spadres;
+    /**
+     * @var array $padres corresponde a un array con los nombres de los padres que tienen al menos un hijo, pero a su vez tienen un padre
+     */
+    private $padres;
+    /**
+     * @var array $hijos corresponden dentro de una estructura en arbol a las hojas del mismo, donde no tienen hijos y a su vez tienen un padre
+     */
+    private $hijos;
+
+    /**
+     * Esta funcion crea el objecto CI de la clase codeigniter e invoca el modelo user_standard_model
+     */
+    public function __construct(){
+        $this->CI =& get_instance();
+        $this->CI->load->model("Libraries/user_standard_model");
+
+
+    }
+    /**
+     * Esta clase consulta el ultimo id guardado de los OA's y entre el mismo sumado 1
+     * @return int Se retorna el consecutivo del id del objeto de aprendizaje
+     */
+    public function get_actual_id(){
+        $idoa = $this->CI->user_standard_model->get_last_row();
+        if($idoa==1){
+            return 1;
+        }else{
+            return $idoa[0]["id_oa"]+1;
+        }
+    }
+
+
+    /**
+     * Esta funcion estructura el estandar proporcionado por el usuario identificando los padres que no tienen padres, padres con padres e hijo con padres
+     */
+    public function structure_standard(){
+
+        $this->tree_standard= $this->CI->user_standard_model->get_user_standard();
+        $arrayin = array();
+
+        for($i=0; $i<count($this->tree_standard); $i++){
+            $id = $this->tree_standard[$i]["id_metadato"];
+            $metadato = $this->tree_standard[$i]["metadato"];
+            //$tipo = $this->tree_standard[$i]["tipo"];
+            $parent = $this->tree_standard[$i]["parentid"];
+            $k=0;
+            //echo $id;
+            if((int) $this->tree_standard[$i]['parentid']!=0) {
+                for ($j = $i + 1; $j < count($this->tree_standard); $j++) {
+                    if ($this->tree_standard[$j]['parentid'] == 0) {
+
+                    } elseif ($id == $this->tree_standard[$j]["parentid"]) {
+                        $k++;
+                    }
+                }
+                if ($k == 0) {
+                    $arrayin = array("id_metadato" => $this->tree_standard[$i]["id_metadato"],
+                        "metadato" => $this->tree_standard[$i]["metadato"], "etiqueta" => $this->tree_standard[$i]["etiqueta"],
+                        "tipo" => $this->tree_standard[$i]["tipo"], "valores" => $this->tree_standard[$i]["valores"],
+                        "mostrar" => $this->tree_standard[$i]["mostrar"], "parentid" => $this->tree_standard[$i]["parentid"],
+                        "orderby" => $this->tree_standard[$i]["order_form"]);
+                    $this->hijos[] = $arrayin;
+                } else {
+                    $arrayin = array("id_metadato" => $this->tree_standard[$i]["id_metadato"],
+                        "metadato" => $this->tree_standard[$i]["metadato"], "etiqueta" => $this->tree_standard[$i]["etiqueta"],
+                        "tipo" => $this->tree_standard[$i]["tipo"], "valores" => $this->tree_standard[$i]["valores"],
+                        "mostrar" => $this->tree_standard[$i]["mostrar"], "parentid" => $this->tree_standard[$i]["parentid"],
+                        "orderby" => $this->tree_standard[$i]["order_form"]);
+                    $this->padres[] = $arrayin;
+                }
+            }else{
+                $arrayin = array("id_metadato" => $this->tree_standard[$i]["id_metadato"],
+                    "metadato" => $this->tree_standard[$i]["metadato"], "etiqueta" => $this->tree_standard[$i]["etiqueta"],
+                    "tipo" => $this->tree_standard[$i]["tipo"], "valores" => $this->tree_standard[$i]["valores"],
+                    "mostrar" => $this->tree_standard[$i]["mostrar"], "parentid" => $this->tree_standard[$i]["parentid"],
+                    "orderby" => $this->tree_standard[$i]["order_form"]);
+                $this->spadres[] = $arrayin;
+            }
+        }
+    }
+
+    /**
+     * @return mixed Retorna los superpadres del estandar del usuario
+     */
+    public function get_spadres(){
+        $aux = null;
+        foreach($this->spadres as $key=>$row){
+            $aux[$key] = $row["orderby"];
+        }
+        array_multisort($aux, SORT_ASC, $this->spadres);
+        return $this->spadres;
+
+    }
+
+    /**
+     * Retorna los padres que tienen hijos y a su vez padres del estandar del usuario
+     * @return mixed Array de datos con los padres
+     */
+    public function get_padres(){
+        $aux = null;
+        foreach($this->padres as $key=>$row){
+            $aux[$key] = $row["orderby"];
+        }
+        array_multisort($aux, SORT_ASC, $this->padres);
+        return $this->padres;
+    }
+
+    /**
+     * Retorna array con los hijos del estandar del usuario
+     * @return mixed Retonr
+     */
+    public function get_hijos(){
+        $aux = null;
+        foreach($this->hijos as $key=>$row){
+            $aux[$key] = $row["orderby"];
+        }
+        array_multisort($aux, SORT_ASC, $this->hijos);
+        return $this->hijos;
+    }
+
+    /**
+     * @param $padre Referencia el padre inmediato del hijo
+     * @param $hijo Referencia al hijo inmediato perteneciente a la categoria o metadato al que corresponde el padre
+     * @param $oa Consecutivo llave única del padre
+     * @param $dato Corresponde al valor del campo tomado del formulario donde se lleno los metadatos del objeto de aprendizaje
+     */
+
+    public function insert_in_oas($padre, $hijo, $oa,$dato){
+        $existe = $this->exist_oa($oa);
+        if($existe){
+            //Existe un registro con ese oa
+            $this->CI->user_standard_model->update_metadato_oa_suppadre($padre, $hijo, $dato, $oa);
+
+        }else{
+            //No Existe ningun registro
+            $this->CI->user_standard_model->insert_metadato_oa_suppadre($padre, $hijo,$dato);
+        }
+    }
+
+    /**
+     * @param $oa Consecutivo de OA;
+     * @return bool Retorna TRUE si existe o FALSE si no existe el objeto de aprendizaje
+     */
+
+    private function exist_oa($oa){
+        $rowoa = $this->CI->user_standard_model->exists_insert_oa($oa);
+        return $rowoa;
+    }
+
+    /**
+     * Esta funcion insertara o
+     * @param $padre Referencia el padre inmediato del hijo
+     * @param $hijo Referencia al hijo inmediato perteneciente a la categoria o metadato al que corresponde el padre
+     * @param $oa Consecutivo llave única del padre
+     * @param $dato Corresponde al valor del campo tomado del formulario donde se lleno los metadatos del objeto de aprendizaje
+     * @param $orden En los campos multivalorados se tiene en cuenta el orden con que se llenan los metadatos de acuerdo al numero de veces que el usuario disponga
+     */
+    public function insert_in_table($padre, $hijo, $oa, $dato, $orden){
+        $supfather = $this->get_father_father($padre);
+
+        $oa_in = $this->exist_row_oas($supfather, $padre, $oa);
+        echo count($oa_in);
+        if(!$oa_in){
+            $this->CI->user_standard_model->insert_metadato_oa_table($supfather,$padre, $hijo, $dato, $oa);
+
+        }else{
+            $i = 1;
+            $num = count($oa_in);
+            foreach($oa_in as $key){
+                if((int)$orden>$num){
+                    //echo $orden;
+                    $this->CI->user_standard_model->insert_metadato_oa_table($supfather,$padre, $hijo, $dato, $oa);
+                    $num++;
+                }
+                if($orden==$i){
+                    $id = $key["id".$supfather."_".$padre];
+                    $this->CI->user_standard_model->update_metadato_oa_table($id,$supfather,$padre, $hijo, $dato);
+                }
+                $i++;
+            }
+        }
+
+    }
+
+    /**
+     * @param $padre Referencia el padre inmediato del hijo
+     * @param $oa Consecutivo llave única del padre
+     * @param $orden En los campos multivalorados se tiene en cuenta el orden con que se llenan los metadatos de acuerdo al numero de veces que el usuario disponga
+     */
+
+    public function delete_in_table($padre, $oa, $orden){
+        $supfather = $this->get_father_father($padre);
+
+        $oa_in = $this->exist_row_oas($supfather, $padre, $oa);
+
+        $i = 1;
+        foreach($oa_in as $key){
+
+            if($orden==$i){
+                $id = $key["id".$supfather."_".$padre];
+                $this->CI->user_standard_model->delete_metadato_oa_table($id,$supfather,$padre);
+            }
+            $i++;
+        }
+
+
+    }
+
+    /**
+     * @param $padre Padre inmediatamente superior al hijo
+     * @return mixed Retorna el nombre del padre del padre
+     * @Access private
+     */
+    private function get_father_father($padre){
+        $padreparent = $this->CI->user_standard_model->get_parentid($padre);
+        $fathername = str_replace(' ', '', strtolower($this->CI->user_standard_model->get_metadato_father($padreparent)));
+
+        return $fathername;
+    }
+
+    /**
+     * @param $suppadre Padre del padre del hijo
+     * @param $padre Padre mas directo
+     * @param $hijo Hijo del padre inmediatamente superior
+     * @param $oa consecutivo del oa
+     * @param $orden es el numero de veces que se ha "clonado" el metadato
+     * @return bool retorna true si existe o false sino existe
+     * @Access private
+     */
+    private function exist_row_oas($suppadre, $padre, $oa){
+        $existe = $this->CI->user_standard_model->exists_oa_table($suppadre, $padre, $oa);
+        return $existe;
+    }
+
+}
+?>

@@ -1,0 +1,13 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: danny
+ * Date: 22/02/15
+ * Time: 06:22 PM
+ */
+
+class User_model extends CI_Model{
+
+
+}
+?>

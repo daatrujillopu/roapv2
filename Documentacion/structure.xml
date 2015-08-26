@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="API Documentation" version="2.8.2">
+  <partials/>
+  <file path="models/user_model.php" generated-path="models.user_model.html" hash="5906807e89509393508b30a20ec4318b" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: danny
+Date: 22/02/15
+Time: 06:22 PM</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="14" package="Default">
+      <extends>\CI_Model</extends>
+      <name>User_model</name>
+      <full_name>\User_model</full_name>
+      <docblock line="14">
+        <description>Clase que contiene las funcionalidades de una usuario no registrado</description>
+        <long-description>Class User_model</long-description>
+        <tag name="package" line="14" description="Default"/>
+      </docblock>
+    </class>
+    <source>eJxdzj8LwjAQh+E9n+I3d7Aa0KGIDro4FArqXGJzaqC91PwBi/jdTQs6ON7D8d6tt/29F3mWCWTYOVKBNC4Dqnt/DNZ1s9HPnlwBrZiHcdynpQJS5nOZL5ajnEyXZL4qpERVJsnFr9kqT3hEQmM5GGJCElwjN8ayao1Wmjw0IbJC9FE5Y8EWjm7GB6e0TZlvyU+/1J3V1E5nmj8EPQOx9tgd6nKElxDiLbabD9HkRrY=</source>
+  </file>
+  <file path="controllers/user.php" generated-path="controllers.user.html" hash="40f08e896475474aa2c8db14de8043fa" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: danny
+Date: 22/02/15
+Time: 06:22 PM</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="20" package="Default">
+      <extends>\CI_Controller</extends>
+      <name>User</name>
+      <full_name>\User</full_name>
+      <docblock line="20">
+        <description>Esta clase se encarga de generar formularios automaticos a partir de</description>
+        <long-description></long-description>
+        <tag name="Access" line="20" description="public"/>
+        <tag name="Autor" line="20" description="Danny Alexander Trujillo Pulgarin"/>
+        <tag name="Category" line="20" description="Usuarios_No_Registrados"/>
+        <tag name="Package" line="20" description="Controladores"/>
+        <tag name="Subpackage" line="20" description="Controladores/Usuario&#10;Class User"/>
+        <tag name="package" line="20" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="" line="24" package="Default">
+        <name>$standard</name>
+        <full_name>\User::standard</full_name>
+        <default></default>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="24" description="&lt;p&gt;Variable que tiene la estructura del estandar proporcionado por el usuario&lt;/p&gt;" type="\User_standard" variable="">
+            <type>\User_standard</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="29" package="Default">
+        <name>__construct</name>
+        <full_name>\User::__construct()</full_name>
+        <docblock line="29">
+          <description>Constructor de la clase que carga las librerias encrypt y user_standard, ademas de crear una nueva estancia de la clase user_standard</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="42" package="Default">
+        <name>index</name>
+        <full_name>\User::index()</full_name>
+        <docblock line="42">
+          <description>Es el metodo por defecto donde se carga las paginas</description>
+          <long-description></long-description>
+          <tag name="Access" line="42" description="Public"/>
+          <tag name="Autor" line="42" description="Danny Alexander Trujillo Pulgarin"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="61" package="Default">
+        <name>wizard_form</name>
+        <full_name>\User::wizard_form()</full_name>
+        <docblock line="61">
+          <description>Esta clase se encarga de mostrar la vista donde se carga el formulario dinamico
+apartir del estandar proporcionado por el usuario</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="77" package="Default">
+        <name>save_category</name>
+        <full_name>\User::save_category()</full_name>
+        <docblock line="77">
+          <description>Funcion se encarga de guardar los datos de cada categoria del estandar brindado por el usuario</description>
+          <long-description></long-description>
+          <tag name="Access" line="77" description="public"/>
+          <tag name="Category" line="77" description="Usuarios_No_Registrados"/>
+          <tag name="Package" line="77" description="Controladores"/>
+          <tag name="Subpackage" line="77" description="Controladores/Usuario"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="107" package="Default">
+        <name>delete_metadato</name>
+        <full_name>\User::delete_metadato()</full_name>
+        <docblock line="107">
+          <description>Funcion se encarga de borrar los metadatos de cada categoria del estandar brindado por el usuario</description>
+          <long-description></long-description>
+          <tag name="Access" line="107" description="public"/>
+          <tag name="Category" line="107" description="Usuarios_No_Registrados"/>
+          <tag name="Package" line="107" description="Controladores"/>
+          <tag name="Subpackage" line="107" description="Controladores/Usuario"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="128" package="Default">
+        <name>uploadfile</name>
+        <full_name>\User::uploadfile()</full_name>
+        <docblock line="128">
+          <description>Esta función se encarga de subir archivos mediante el metodo ajax solo para un archivo</description>
+          <long-description></long-description>
+          <tag name="Access" line="128" description="public"/>
+          <tag name="Category" line="128" description="Usuarios_No_Registrados"/>
+          <tag name="Package" line="128" description="Controladores"/>
+          <tag name="Subpackage" line="128" description="Controladores/Usuario"/>
+        </docblock>
+      </method>
+    </class>
+    <source>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</source>
+  </file>
+  <file path="models/Libraries/user_standard_model.php" generated-path="models.Libraries.user_standard_model.html" hash="3847d8972785c4408b732137240557ff" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: danny
+Date: 15/02/15
+Time: 04:51 PM</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="15" package="Default">
+      <extends>\CI_Model</extends>
+      <name>User_standard_model</name>
+      <full_name>\User_standard_model</full_name>
+      <docblock line="15">
+        <description>Esta clase contiene los metodos de insercion actualizacion y borrado de metadatos pertenecientes
+al estandar proporcionado por el usuario
+Class User_standard_model</description>
+        <long-description></long-description>
+        <tag name="package" line="15" description="Default"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="20" package="Default">
+        <name>get_user_standard</name>
+        <full_name>\User_standard_model::get_user_standard()</full_name>
+        <docblock line="20">
+          <description>Funcíon que busca y retorna la estructura el estandar de metadatos propocionado por el usuario</description>
+          <long-description></long-description>
+          <tag name="return" line="20" description="Se retorna un array con los metadatos proporcionados por el usuario" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="32" package="Default">
+        <name>get_last_row</name>
+        <full_name>\User_standard_model::get_last_row()</full_name>
+        <docblock line="32">
+          <description>Retorna el consecutivo inmediatamente siguiente al ultimo id del oa que se tiene</description>
+          <long-description></long-description>
+          <tag name="return" line="32" description="" type="integer">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="50" package="Default">
+        <name>exists_insert_oa</name>
+        <full_name>\User_standard_model::exists_insert_oa()</full_name>
+        <docblock line="50">
+          <description>Se revisa que exista al menos una fila en la tabla</description>
+          <long-description></long-description>
+          <tag name="param" line="50" description="" type="" variable="$oa"/>
+          <tag name="return" line="50" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="70" package="Default">
+        <name>insert_metadato_oa_suppadre</name>
+        <full_name>\User_standard_model::insert_metadato_oa_suppadre()</full_name>
+        <docblock line="70">
+          <description>En caso de no existir fila con el consecutivo del oa se insertara los datos</description>
+          <long-description></long-description>
+          <tag name="param" line="70" description="&lt;p&gt;Padre que tiene como padre a $supfather&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="70" description="&lt;p&gt;Metadato hoja&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="70" description="&lt;p&gt;dato referenciado     *&lt;/p&gt;" type="" variable="$dato"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$hijo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$dato</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="84" package="Default">
+        <name>update_metadato_oa_suppadre</name>
+        <full_name>\User_standard_model::update_metadato_oa_suppadre()</full_name>
+        <docblock line="84">
+          <description>En caso de que exista algun dato se actualizara la fila</description>
+          <long-description></long-description>
+          <tag name="param" line="84" description="&lt;p&gt;Padre que tiene como padre a $supfather&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="84" description="&lt;p&gt;Metadato hoja&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="84" description="&lt;p&gt;dato referenciado&lt;/p&gt;" type="" variable="$dato"/>
+          <tag name="param" line="84" description="&lt;p&gt;Consecutivo e identifcador del OA&lt;/p&gt;" type="" variable="$oa"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$hijo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$dato</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="97" package="Default">
+        <name>get_parentid</name>
+        <full_name>\User_standard_model::get_parentid()</full_name>
+        <docblock line="97">
+          <description>Funcion que obtiene el parent id del padre</description>
+          <long-description></long-description>
+          <tag name="param" line="97" description="&lt;p&gt;Padre que tiene como padre a $supfather&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="return" line="97" description="Se devuelve el valor del parentid del padre;" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="108" package="Default">
+        <name>get_metadato_father</name>
+        <full_name>\User_standard_model::get_metadato_father()</full_name>
+        <docblock line="108">
+          <description>Esta función devuelve el metadato  categoria resultado de la busqueda en el estandar del usuario</description>
+          <long-description></long-description>
+          <tag name="param" line="108" description="" type="" variable="$suppadre"/>
+          <tag name="return" line="108" description="Se retorna el metadato(nombre) del padre padre" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$suppadre</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="125" package="Default">
+        <name>exists_oa_table</name>
+        <full_name>\User_standard_model::exists_oa_table()</full_name>
+        <docblock line="125">
+          <description>Esta función busca si existe registrado al menos el oa correspondiente a una tabla</description>
+          <long-description></long-description>
+          <tag name="param" line="125" description="&lt;p&gt;Padre que no tiene mas padres&lt;/p&gt;" type="" variable="$suppadre"/>
+          <tag name="param" line="125" description="&lt;p&gt;Padre que tiene un padre y a su vez es hijo&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="125" description="&lt;p&gt;Consecutivo del OA&lt;/p&gt;" type="" variable="$oa"/>
+          <tag name="return" line="125" description="Devuleve false sino existe, o devuleve un array con los datos del oa" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$suppadre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="149" package="Default">
+        <name>insert_metadato_oa_table</name>
+        <full_name>\User_standard_model::insert_metadato_oa_table()</full_name>
+        <docblock line="149">
+          <description>Esta función inserta datos en una tabla determinada, identificandola con los parametros
+de superpadre, padre e hijo y este se asocia al id del objeto de aprendizaje</description>
+          <long-description></long-description>
+          <tag name="param" line="149" description="&lt;p&gt;padre que no tiene otro padre&lt;/p&gt;" type="" variable="$supfather"/>
+          <tag name="param" line="149" description="&lt;p&gt;Padre que tiene como padre a $supfather&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="149" description="&lt;p&gt;Metadato hoja&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="149" description="&lt;p&gt;dato referenciado&lt;/p&gt;" type="" variable="$dato"/>
+          <tag name="param" line="149" description="&lt;p&gt;consecutivo del oa&lt;/p&gt;" type="" variable="$oa"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$supfather</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$hijo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$dato</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="168" package="Default">
+        <name>update_metadato_oa_table</name>
+        <full_name>\User_standard_model::update_metadato_oa_table()</full_name>
+        <docblock line="168">
+          <description>Esta función actualizara datos en una tabla determinada, identificandola con los parametros
+de superpadre, padre e hijo y este se asocia al id del objeto de aprendizaje</description>
+          <long-description></long-description>
+          <tag name="param" line="168" description="&lt;p&gt;consecutivo de la tabla, este identifica que dato debe actualizar y en que fila&lt;/p&gt;" type="" variable="$id"/>
+          <tag name="param" line="168" description="&lt;p&gt;padre que no tiene otro padre&lt;/p&gt;" type="" variable="$supfather"/>
+          <tag name="param" line="168" description="&lt;p&gt;Padre que tiene como padre a $supfather&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="168" description="&lt;p&gt;Metadato hoja&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="168" description="&lt;p&gt;dato referenciado&lt;/p&gt;" type="" variable="$dato"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$supfather</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$hijo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$dato</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="182" package="Default">
+        <name>delete_metadato_oa_table</name>
+        <full_name>\User_standard_model::delete_metadato_oa_table()</full_name>
+        <docblock line="182">
+          <description>Función que borra la fila de una tabla identificando su consecutivo</description>
+          <long-description></long-description>
+          <tag name="param" line="182" description="&lt;p&gt;Consecutivo de la tabla&lt;/p&gt;" type="" variable="$id"/>
+          <tag name="param" line="182" description="&lt;p&gt;Superpadre que no tiene un padre&lt;/p&gt;" type="" variable="$supfather"/>
+          <tag name="param" line="182" description="&lt;p&gt;Padre que tiene a su vez un padre&lt;/p&gt;" type="" variable="$padre"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$supfather</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>eJzVWNtu20YQfddXDAgDog3asov6xamVBrYL9MGIUbdPQSAsyZG1Bslld5e2lSKf1Kd+Qn6ss7u8SqQk106R6EEX7mVm55yZOauf3uaLfDQ5OBjBAVxIZBpjCJdws8hvtZDpkXn+h0J5BjHLsqX5eUmTzuDkdHL8w+Tk1Dz5naf05PjHs9MTuLmmJ5NRteeV0gyihCmESGSaY4aQCAUpahHTZ4zAM9o/4iIDFumCJfwTs7+WEAopWSzMJJrPYqZpRY5S0y4RbaVRGRssASQzWcwk5FLkwu5mFtJXwAQKVTDJhT0juaLsiWblkniWihgTGrSOR0MTAJ/Ibqzg4tfZtXnw1wjoZc9pXgfwS5FFX/4mz/8sEMJCRYzOIOmgMmOQMOOkLOiIkhmnape7pzP+D7nvzPxMWxYyg5Q/EVi3WJsoKIIUsKWJdBXk9rZVWFT/xhP7mRdhwiOY01m0QeEO9axoR8Pfdwc3rz294OpwGoeHU4UJRtr3Drz9N33jcylS36s9GpglZEymwqXvcQp7OdkLPKaizgqKsFzCeXspOeq3ppRBcjMPpxJVkeiZjU817fNoFcHfykhSbCiGCqNC8wdBDE0x5kyz1HAOFL8rLPsM82hXntKUGAxHBLPgE9st1Vch45neGmzin55J8bglzhQfwTbGWrCdoky7BOBdXt1eDMxOeMq1f/K88PO5X4U+K1JzHuXvT49bZ9oRJAsUJgp7V560Jg1gahPkgSuHDD5xU5EIOMKSMqEgtOfcJGdmUlSzMGE1ajmTLIU9wVZxDIVINgJpzaiZLW2aQuzTJi/Jm2EsHxcosQbSmPl6OFH5wl1QmTMa2Y7MVQYRU7a8Z8KFjEuHhqlgK0lYppcqG4YmbGyRs+Wk3HIVuZzFEuHGvhv0Xf+JBCWsG2Kwp4p8zjRFcXXxgt8LuC5rECzE/Rox7IB9kzgnGLKIm7LddmUy6uVHSYyqwhF2M/LD+uQ7rwPnQGCNtKlDvxlB6pKkE33PO3Jrj7wZfbX+n0+dm/XEfhY5fxzPAmdjsEi2YOtk1B31HxsMgqju5NJ2PoPpN4HNemrDRYtjxK2YCjufRzRXWsq9f7cx0YucbODOQAawUgi+CprdmgArRaGZ55zfDXUjbnipbUTowKLwUBwpYFX7s/6+DtCrIifGhwKTB2v0gSUlOs582/qbrQ22WlPi00ajp17aR77nynRjz5Tllr6yEady9IjSl5gnLEK/Gg1gDGN6G+/vn48bUMedgm6Zer61E1YN00z/cPzxg1c55H0cTFeTnSYA/Ms/WSeMlYNA+azxTkjOwBkuRTdlLslYcim2/bErWtd1aYl3xf+terXlgp+JNCQsGhw7XBoGs048Rx+/tr6529bS8iVitUmzRqk2x39eH/7PBKhN70gAdy9R3NVtA8YdfdprVi2KXKeN6PaFKhdZXIpdK5Z6FVJ15laWU0d3iZ4y5bBUuxUG6iJuYEkWVQEP+IloB6b+banenXLd0WpwSbRPkGhvpQkdvxIcVJ6FTQo7unaDctntpMfmjl4qPqr/JkLYEDGAug+8SAPWG7p+sMax55f/9jWAduzZny4G71buBd+M9F8TmTvRv9SOJbBU1GpOE8oaZcrphsyCSgfwiMqdKAWpIYRlHmpZS05TJylyKMuAOe6i5StRGE2OGUGk6FZv7x3VTTG8R22rLMuphMekle7XWmfdFsttO4klyIvX7LivL62gR8A/Wxc36eT8DbqyyrkTvIqsCrozXQLZ0cpv2CKgx+OjxtOj8WxcJ1KlrnZiaVs+fx9MpbldrOvbdOB2bty0lHQcwrB9VTBOOIHZd1/4DnNhgOQ9d4aS5DwOthD9/7s7eG0mt1sCebn5OjG8cvsNw7Df/n1q/vqtro6GTg37O4Q3CqFFvB5aXvTTcphet3WOdDlWCZPdGFZrl5Vl/VKW8gx3pwSR4JWhc/YHoWsw+zx6O/0XHTRPXA==</source>
+  </file>
+  <file path="libraries/User_standard.php" generated-path="libraries.User_standard.html" hash="d0f3e855c6597ae6930acb3b8949bf27" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: danny
+Date: 22/02/15
+Time: 06:22 PM</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="" line="16" package="Default">
+      <extends/>
+      <name>User_standard</name>
+      <full_name>\User_standard</full_name>
+      <docblock line="16">
+        <description>Clase que maneja el estandar dado por el Usuario</description>
+        <long-description></long-description>
+        <tag name="Autor" line="16" description="Danny Alenxander Trujillo"/>
+        <tag name="Package" line="16" description="Libreria"/>
+        <tag name="SubPackage" line="16" description="Estandar Usuario&#10;Class User_standard"/>
+        <tag name="package" line="16" description="Default"/>
+      </docblock>
+      <property static="false" visibility="private" namespace="" line="20" package="Default">
+        <name>$CI</name>
+        <full_name>\User_standard::CI</full_name>
+        <default></default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="20" description="&lt;p&gt;esta variable es la herencia de la clase proporcionada por Codeigniter&lt;/p&gt;" type="object" variable="$CI">
+            <type>object</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="24" package="Default">
+        <name>$tree_standard</name>
+        <full_name>\User_standard::tree_standard</full_name>
+        <default></default>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="24" description="&lt;p&gt;Esta variable toma la estructura del estandar proporcionado por el usuario&lt;/p&gt;" type="array" variable="$tree_standard">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="28" package="Default">
+        <name>$spadres</name>
+        <full_name>\User_standard::spadres</full_name>
+        <default></default>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="28" description="&lt;p&gt;corresponde a un array con el nombre de los padres que no tienen mas padres&lt;/p&gt;" type="array" variable="$spadres">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="32" package="Default">
+        <name>$padres</name>
+        <full_name>\User_standard::padres</full_name>
+        <default></default>
+        <docblock line="32">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="32" description="&lt;p&gt;corresponde a un array con los nombres de los padres que tienen al menos un hijo, pero a su vez tienen un padre&lt;/p&gt;" type="array" variable="$padres">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="private" namespace="" line="36" package="Default">
+        <name>$hijos</name>
+        <full_name>\User_standard::hijos</full_name>
+        <default></default>
+        <docblock line="36">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="36" description="&lt;p&gt;corresponden dentro de una estructura en arbol a las hojas del mismo, donde no tienen hijos y a su vez tienen un padre&lt;/p&gt;" type="array" variable="$hijos">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="41" package="Default">
+        <name>__construct</name>
+        <full_name>\User_standard::__construct()</full_name>
+        <docblock line="41">
+          <description>Esta funcion crea el objecto CI de la clase codeigniter e invoca el modelo user_standard_model</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="51" package="Default">
+        <name>get_actual_id</name>
+        <full_name>\User_standard::get_actual_id()</full_name>
+        <docblock line="51">
+          <description>Esta clase consulta el ultimo id guardado de los OA's y entre el mismo sumado 1</description>
+          <long-description></long-description>
+          <tag name="return" line="51" description="Se retorna el consecutivo del id del objeto de aprendizaje" type="integer">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="64" package="Default">
+        <name>structure_standard</name>
+        <full_name>\User_standard::structure_standard()</full_name>
+        <docblock line="64">
+          <description>Esta funcion estructura el estandar proporcionado por el usuario identificando los padres que no tienen padres, padres con padres e hijo con padres</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="114" package="Default">
+        <name>get_spadres</name>
+        <full_name>\User_standard::get_spadres()</full_name>
+        <docblock line="114">
+          <description>Esta función busca los padre que no tienen mas padres</description>
+          <long-description></long-description>
+          <tag name="return" line="114" description="Retorna los superpadres del estandar del usuario" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="128" package="Default">
+        <name>get_padres</name>
+        <full_name>\User_standard::get_padres()</full_name>
+        <docblock line="128">
+          <description>Retorna los padres que tienen hijos y a su vez padres del estandar del usuario</description>
+          <long-description></long-description>
+          <tag name="return" line="128" description="Array de datos con los padres" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="141" package="Default">
+        <name>get_hijos</name>
+        <full_name>\User_standard::get_hijos()</full_name>
+        <docblock line="141">
+          <description>Retorna array con los hijos del estandar del usuario</description>
+          <long-description></long-description>
+          <tag name="return" line="141" description="Retonr" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="158" package="Default">
+        <name>insert_in_oas</name>
+        <full_name>\User_standard::insert_in_oas()</full_name>
+        <docblock line="158">
+          <description>Inserta en la tabla OAS registro en caso de que no exista el consecutivo del OA y en caso de que exista
+actualiza las columnas de esa fila</description>
+          <long-description></long-description>
+          <tag name="param" line="158" description="&lt;p&gt;Referencia el padre inmediato del hijo&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="158" description="&lt;p&gt;Referencia al hijo inmediato perteneciente a la categoria o metadato al que corresponde el padre&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="158" description="&lt;p&gt;Consecutivo llave única del padre&lt;/p&gt;" type="" variable="$oa"/>
+          <tag name="param" line="158" description="&lt;p&gt;Corresponde al valor del campo tomado del formulario donde se lleno los metadatos del objeto de aprendizaje&lt;/p&gt;" type="" variable="$dato"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$hijo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$dato</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="176" package="Default">
+        <name>exist_oa</name>
+        <full_name>\User_standard::exist_oa()</full_name>
+        <docblock line="176">
+          <description>Función en busca de la si existe el id del OA</description>
+          <long-description></long-description>
+          <tag name="param" line="176" description="&lt;p&gt;Consecutivo de OA;&lt;/p&gt;" type="" variable="$oa"/>
+          <tag name="return" line="176" description="Retorna TRUE si existe o FALSE si no existe el objeto de aprendizaje" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="189" package="Default">
+        <name>insert_in_table</name>
+        <full_name>\User_standard::insert_in_table()</full_name>
+        <docblock line="189">
+          <description>Esta funcion insertara o</description>
+          <long-description></long-description>
+          <tag name="param" line="189" description="&lt;p&gt;Referencia el padre inmediato del hijo&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="189" description="&lt;p&gt;Referencia al hijo inmediato perteneciente a la categoria o metadato al que corresponde el padre&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="189" description="&lt;p&gt;Consecutivo llave única del padre&lt;/p&gt;" type="" variable="$oa"/>
+          <tag name="param" line="189" description="&lt;p&gt;Corresponde al valor del campo tomado del formulario donde se lleno los metadatos del objeto de aprendizaje&lt;/p&gt;" type="" variable="$dato"/>
+          <tag name="param" line="189" description="&lt;p&gt;En los campos multivalorados se tiene en cuenta el orden con que se llenan los metadatos de acuerdo al numero de veces que el usuario disponga&lt;/p&gt;" type="" variable="$orden"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$hijo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$dato</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$orden</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="222" package="Default">
+        <name>delete_in_table</name>
+        <full_name>\User_standard::delete_in_table()</full_name>
+        <docblock line="222">
+          <description>Borra filas de registros correspondientes al id del OA</description>
+          <long-description></long-description>
+          <tag name="param" line="222" description="&lt;p&gt;Referencia el padre inmediato del hijo&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="222" description="&lt;p&gt;Consecutivo llave única del padre&lt;/p&gt;" type="" variable="$oa"/>
+          <tag name="param" line="222" description="&lt;p&gt;En los campos multivalorados se tiene en cuenta el orden con que se llenan los metadatos de acuerdo al numero de veces que el usuario disponga&lt;/p&gt;" type="" variable="$orden"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$orden</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="246" package="Default">
+        <name>get_father_father</name>
+        <full_name>\User_standard::get_father_father()</full_name>
+        <docblock line="246">
+          <description>Función en busca del padre de un padre</description>
+          <long-description></long-description>
+          <tag name="param" line="246" description="&lt;p&gt;Padre inmediatamente superior al hijo&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="return" line="246" description="Retorna el nombre del padre del padre" type="mixed">
+            <type>mixed</type>
+          </tag>
+          <tag name="Access" line="246" description="private"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="263" package="Default">
+        <name>exist_row_oas</name>
+        <full_name>\User_standard::exist_row_oas()</full_name>
+        <docblock line="263">
+          <description>Esta función busca si existe al menos una fila registrada por con el consecutivo o id acutal del oa</description>
+          <long-description></long-description>
+          <tag name="param" line="263" description="&lt;p&gt;Padre del padre del hijo&lt;/p&gt;" type="" variable="$suppadre"/>
+          <tag name="param" line="263" description="&lt;p&gt;Padre mas directo&lt;/p&gt;" type="" variable="$padre"/>
+          <tag name="param" line="263" description="&lt;p&gt;Hijo del padre inmediatamente superior&lt;/p&gt;" type="" variable="$hijo"/>
+          <tag name="param" line="263" description="&lt;p&gt;consecutivo del oa&lt;/p&gt;" type="" variable="$oa"/>
+          <tag name="param" line="263" description="&lt;p&gt;es el numero de veces que se ha &quot;clonado&quot; el metadato&lt;/p&gt;" type="" variable="$orden"/>
+          <tag name="return" line="263" description="retorna true si existe o false sino existe" type="boolean">
+            <type>boolean</type>
+          </tag>
+          <tag name="Access" line="263" description="private"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$suppadre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$padre</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oa</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>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</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="global" full_name="global"/>
+  <namespace name="global" full_name="global"/>
+  <deprecated count="0"/>
+</project>
