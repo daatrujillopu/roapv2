@@ -20,10 +20,18 @@
             <span>ROAP</span></a>
 
         <!-- user dropdown starts -->
-        <div class="btn-group pull-right">
-            <a href="<?php echo base_url()?>login"><button class="btn btn-default">Login</button></a>
+        <?php if($sessioninitialized=="yes"){?>
 
-        </div>
+            <div class="btn-group pull-right">
+                <a href="<?php echo base_url()?>session/logout"><button class="btn btn-default">Logout</button></a>
+
+            </div>
+        <?php }else{ ?>
+            <div class="btn-group pull-right">
+                <a href="<?php echo base_url()?>login"><button class="btn btn-default">Login</button></a>
+
+            </div>
+        <?php } ?>
         <!--
         <div class="btn-group pull-right">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">

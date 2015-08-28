@@ -43,12 +43,15 @@ class User extends CI_Controller{
      */
 
     public function index(){
+        if($this->session->userdata("logged_in")){
+            $data = array(
+                "actual_id" => $this->standard->get_actual_id(),
+                "main" => "user/wizard_form",
+                "sessioninitialized" => "yes",
+            );
+            $this->load->view("layouts/user_template", $data);
+        }
 
-        $data = array(
-            "actual_id" => $this->standard->get_actual_id(),
-            "main" => "user/wizard_form"
-        );
-        $this->load->view("layouts/user_template", $data);
 
     }
 
@@ -60,21 +63,24 @@ class User extends CI_Controller{
 
 
     public function form_metadata($id_oa) {
-        //echo $id_oa;
-        $this->config->set_item('csrf_protection', TRUE);
+        if($this->session->userdata("logged_in")){
+            //echo $id_oa;
+            $this->config->set_item('csrf_protection', TRUE);
 
-        $this->standard->structure_standard();
-        $this->actualoa_id = $this->standard->get_actual_id();
-        $data = array(
+            $this->standard->structure_standard();
+            $this->actualoa_id = $this->standard->get_actual_id();
+            $data = array(
 
-            "actual_id" => $id_oa,
-            "spadres" => $this->standard->get_spadres(),
-            "padres" => $this->standard->get_padres(),
-            "tree" => $this->standard->get_standard(),
-            "hijos" => $this->standard->get_hijos(),
-            "main" => "user/form"
-        );
-        $this->load->view("layouts/user_template", $data);
+                "actual_id" => $id_oa,
+                "spadres" => $this->standard->get_spadres(),
+                "padres" => $this->standard->get_padres(),
+                "tree" => $this->standard->get_standard(),
+                "hijos" => $this->standard->get_hijos(),
+                "main" => "user/form"
+            );
+            $this->load->view("layouts/user_template", $data);
+        }
+
     }
 
 
@@ -87,31 +93,34 @@ class User extends CI_Controller{
      * @Subpackage Controladores/Usuario
      */
     public function save_category(){
-        $datos = json_decode($this->input->get("datos"));
-        $metadatos = json_decode($this->input->get("elementos"));
-        $create = $this->input->get("find");
-        $oa = $this->encrypt->decode(base64_decode($this->input->get("oa")));
-        echo $oa;
-        for($i = 0; $i<count($datos); $i++) {
-            $dato = $datos[$i];
-            $father = $metadatos[$i];
-            echo $father;
-            $father = explode("_",$father);
-            if(count($father)<3){
-                $padre = $father[0];
-                $hijo = $father[1];
-                $this->standard->insert_in_oas($padre,$hijo,$oa,$dato);
-            }else{
-                $padre = $father[0];
-                $hijo = $father[1];
-                $orden = $father[2];
-                $this->standard->insert_in_table($padre, $hijo, $oa, $dato, $orden);
+        if($this->session->userdata("logged_in")){
+            $datos = json_decode($this->input->get("datos"));
+            $metadatos = json_decode($this->input->get("elementos"));
+            $create = $this->input->get("find");
+            $oa = $this->encrypt->decode(base64_decode($this->input->get("oa")));
+            echo $oa;
+            for($i = 0; $i<count($datos); $i++) {
+                $dato = $datos[$i];
+                $father = $metadatos[$i];
+                echo $father;
+                $father = explode("_",$father);
+                if(count($father)<3){
+                    $padre = $father[0];
+                    $hijo = $father[1];
+                    $this->standard->insert_in_oas($padre,$hijo,$oa,$dato);
+                }else{
+                    $padre = $father[0];
+                    $hijo = $father[1];
+                    $orden = $father[2];
+                    $this->standard->insert_in_table($padre, $hijo, $oa, $dato, $orden);
+                }
+            }
+
+            if($create == "si"){
+                $this->standard->generate_xml($oa);
             }
         }
 
-        if($create == "si"){
-            $this->standard->generate_xml($oa);
-        }
 
 
     }
@@ -124,16 +133,18 @@ class User extends CI_Controller{
      * @Subpackage Controladores/Usuario
      */
     public function delete_metadato(){
+        if($this->session->userdata("logged_in")){
+            $metadato = $this->input->get("metadato");
+            $oa = $this->input->get("oa");
+            echo $oa;
+            $father = $metadato;
+            $father = explode("_",$father);
+            echo $metadato;
+            $padre = $father[0];
+            $orden = $father[2];
+            $this->standard->delete_in_table($padre, $oa, $orden);
+        }
 
-        $metadato = $this->input->get("metadato");
-        $oa = $this->input->get("oa");
-        echo $oa;
-        $father = $metadato;
-        $father = explode("_",$father);
-        echo $metadato;
-        $padre = $father[0];
-        $orden = $father[2];
-        $this->standard->delete_in_table($padre, $oa, $orden);
     }
 
     /**
@@ -145,45 +156,47 @@ class User extends CI_Controller{
      */
 
     public function uploadfile(){
+        if($this->session->userdata("logged_in")){
+            $actual_id = $this->check_id_oa();
 
-        $actual_id = $this->check_id_oa();
+            if(!is_dir("./upload/".$actual_id)){
+                mkdir("./upload/".$actual_id, 0777);
+            }
+            $direccionima = "./upload/".$actual_id;
+            $fecha = date("Y-m-d-H-i-s");
+            $config['upload_path'] = $direccionima;
+            $config['allowed_types'] = '*';
+            $config['max_size'] = '1000000';
+            $nombre = $_FILES['archivo']['name'];
+            $extension = end(explode(".", $nombre));
+            $config['file_name'] = $actual_id.".".$extension;
 
-        if(!is_dir("./upload/".$actual_id)){
-            mkdir("./upload/".$actual_id, 0777);
-        }
-        $direccionima = "./upload/".$actual_id;
-        $fecha = date("Y-m-d-H-i-s");
-        $config['upload_path'] = $direccionima;
-        $config['allowed_types'] = '*';
-        $config['max_size'] = '1000000';
-        $nombre = $_FILES['archivo']['name'];
-        $extension = end(explode(".", $nombre));
-        $config['file_name'] = $actual_id.".".$extension;
+            $this->load->library('upload', $config);
 
-        $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('archivo')) {
-            echo "errores";
-            $error = array('error' => $this->upload->display_errors());
-            print_r($error);
+            if (!$this->upload->do_upload('archivo')) {
+                echo "errores";
+                $error = array('error' => $this->upload->display_errors());
+                print_r($error);
 //            $this->index();
 //
 //                $this->load->view('formulario_carga', $error);
-        }else{
-            $this->standard->reserve_id_oa($extension,$actual_id);
-            echo base64_encode($this->encrypt->encode($actual_id));
+            }else{
+                $this->standard->reserve_id_oa($extension,$actual_id);
+                echo base64_encode($this->encrypt->encode($actual_id));
+            }
+
+            /*$this->load->library('upload', $config);
+            $upload_folder ='upload';
+            $nombre_archivo = $_FILES['archivo']['name'];
+            $tipo_archivo = $_FILES['archivo']['type'];
+            $tamano_archivo = $_FILES['archivo']['size'];
+            $tmp_archivo = $_FILES['archivo']['tmp_name'];
+            $archivador = $upload_folder . '/' . $nombre_archivo;
+            if (!move_uploaded_file($tmp_archivo, $archivador)) {
+
+            }*/
         }
 
-        /*$this->load->library('upload', $config);
-        $upload_folder ='upload';
-        $nombre_archivo = $_FILES['archivo']['name'];
-        $tipo_archivo = $_FILES['archivo']['type'];
-        $tamano_archivo = $_FILES['archivo']['size'];
-        $tmp_archivo = $_FILES['archivo']['tmp_name'];
-        $archivador = $upload_folder . '/' . $nombre_archivo;
-        if (!move_uploaded_file($tmp_archivo, $archivador)) {
-
-        }*/
     }
 
     /**
@@ -195,12 +208,15 @@ class User extends CI_Controller{
      */
 
     private function check_id_oa(){
-        $actualid = $this->standard->get_actual_id();
-        if($actualid!=$this->actualoa_id){
-            return $actualid;
-        }else{
-            return $this->actualoa_id;
+        if($this->session->userdata("logged_in")){
+            $actualid = $this->standard->get_actual_id();
+            if($actualid!=$this->actualoa_id){
+                return $actualid;
+            }else{
+                return $this->actualoa_id;
+            }
         }
+
     }
 
     public function oaipmh(){

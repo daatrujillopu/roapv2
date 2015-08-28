@@ -423,6 +423,8 @@ class User_standard
             $this->insert_in_oas($father, str_replace(" ", "", strtolower($metadatolocation[0]["metadato"])), $id_oa, $extension);
         }
 
+
+
     }
 
     private function create_xml($xml, $category, $padre, $elements, $indent, $id_oa, $ismultiple)
