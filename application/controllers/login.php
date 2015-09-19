@@ -10,6 +10,14 @@ class Login extends CI_Controller{
         $this->load->view('session/session_view');
     }
 
+    function new_user(){
+        $this->load->view('session/new_user_view');
+    }
+
+    function create_new_user(){
+
+    }
+
 
 
 }
