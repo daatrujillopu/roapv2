@@ -186,6 +186,7 @@
             formdata.append("archivo", file);
             formdata.append("currentcollec", $("#currentcollection").val());
             formdata.append("currentsubcollec", $("#currentsubcollection").val());
+            formdata.append(""+$("#csrf_name").val(), $("#csrf_token").val());
 
             $.ajax({
                 url: "<?php echo base_url()?>index.php/user/uploadfile/",

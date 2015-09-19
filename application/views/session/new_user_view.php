@@ -53,6 +53,9 @@
 </head>
 
 <body>
+<input type="hidden" id="urlda" value="<?=base_url()?>">
+<input type="hidden" id="csrf_name" value="<?= $this->security->get_csrf_token_name()?>">
+<input type="hidden" id="csrf_token" value="<?= $this->security->get_csrf_hash(); ?>">
 <div class="ch-container">
     <div class="row">
 
@@ -125,6 +128,23 @@
 </div><!--/.fluid-container-->
 
 <script>
+    $("#useradmin").focusout(function () {
+        var sendata = {};
+        sendata[$("#csrf_name").val()] = $("#csrf_token").val();
+        sendata["username"] = $("#useradmin").val();
+        $.ajax({
+            url: "<?=base_url()?>index.php/login/check_user_name/",
+            data: sendata,
+            type: "POST"
+        }).done(function (msg) {
+            if(msg=="true"){
+                $("#useradmin").attr('title', "El username ya se encuentra en uso escoge otro");
+                $("#useradmin").tooltip();
+                $("#useradmin").parent().addClass("has-error");
+                $("#useradmin").focus();
+            }
+        });
+    });
     function validateEmail(email) {
         var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         return re.test(email);

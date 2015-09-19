@@ -35,6 +35,9 @@ class Session extends CI_Controller{
                 redirect('admin', 'refresh');
 
             }
+            if($arr["role"] == 2){
+                redirect('main', 'refresh');
+            }
         }
     }
 
@@ -51,7 +54,7 @@ class Session extends CI_Controller{
             foreach($result as $row)
             {
                 $sess_array = array(
-                    'username' => $row["name"]." ". $row["last_name"],
+                    'username' => $row["name"]." ". $row["lastname"],
                     'role' => $row["role"],
                     'user_state' => $row["valided"],
                     'lastloggin' => date("d-m-Y", strtotime($row["lastloging"]))

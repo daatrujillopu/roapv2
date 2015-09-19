@@ -25,6 +25,8 @@ class User extends CI_Controller{
 
     private $actualoa_id;
 
+    private $collection_sub_helper;
+
     /**
      *Constructor de la clase que carga las librerias encrypt y user_standard, ademas de crear una nueva estancia de la clase user_standard
      */
@@ -32,7 +34,9 @@ class User extends CI_Controller{
         parent::__construct();
         $this->load->library('encrypt');
         $this->load->library("User_standard");
+        $this->load->library("Collection_subcollection_helper");
         $this->standard = new User_standard();
+        $this->collection_sub_helper = new Collection_subcollection_helper();
     }
 
     /**
@@ -48,6 +52,10 @@ class User extends CI_Controller{
                 "actual_id" => $this->standard->get_actual_id(),
                 "main" => "user/wizard_form",
                 "sessioninitialized" => "yes",
+                "collections" => $this->collection_sub_helper->get_collection_list(),
+                "numoas_collection" => $this->collection_sub_helper->get_num_oas_collections(),
+                "subcollections" => $this->collection_sub_helper->get_subcollection_list(),
+                "numoas_subcollections" => $this->collection_sub_helper->get_num_oas_subcollections(),
             );
             $this->load->view("layouts/user_template", $data);
         }

@@ -100,6 +100,11 @@
                     </fieldset>
                 </form>
             </div>
+            <div class=" col-md-5 center">
+                <p>
+                    <a href="<?=base_url()?>login/new_user/"  class="btn btn-success">No Tienes Cuenta, Crea una nueva</a>
+                </p>
+            </div>
             <!--/span-->
         </div><!--/row-->
     </div><!--/fluid-row-->

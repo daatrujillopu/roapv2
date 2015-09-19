@@ -13,6 +13,34 @@
  */
 class User_model extends CI_Model{
 
+    function new_user(){
+
+        $data = array(
+        "name" => $this->input->post("userfirstname"),
+        "lastname" => $this->input->post("userlastname"),
+        "email" => $this->input->post("useremail"),
+        "logging" => $this->input->post("useradmin"),
+        "password" => sha1($this->input->post("userpassword")),
+        "role" => 2,
+        "valided" => "TRUE",
+        "lastloging" => date("Y-m-d"),
+
+        );
+        $this->db->insert("users", $data);
+    }
+
+    function check_user_name(){
+        $this->db->select("email");
+        $this->db->from("users");
+        $this->db->where("logging", $this->input->post("username"));
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
     public function reserve_id_oa(){
         $data = array("general_title" =>'');
         $this->db->insert("oas", $data);

@@ -11,9 +11,9 @@
         <div class="col-sm-1">
         </div>
         <div class="input-group has-warning col-sm-10">
-                    <label style="display:none;" for="search_objects"> Busqueda</label>
+            <label style="display:none;" for="search_objects"> Busqueda</label>
 
-                    <input type="text" id="search_objects" class="form-control" >
-                    <span class=" input-group-btn "><i><button class="btn btn-success btn btn-success"><!--<php echo $this->lang->line("search_button")?>--></button></i></span>
+            <input type="text" id="search_objects" class="form-control" >
+            <span class=" input-group-btn "><i><button class="btn btn-success btn btn-success">Buscar</button></i></span>
         </div>
     </div>

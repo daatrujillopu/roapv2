@@ -61,6 +61,8 @@ class Installer_model extends CI_Model{
         }
 
     }
+
+
 }
 
 ?>
