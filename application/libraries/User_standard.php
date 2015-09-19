@@ -56,7 +56,7 @@ class User_standard
      */
     public function get_actual_id()
     {
-        $idoa = $this->CI->user_standard_model->get_last_row();
+            $idoa = $this->CI->user_standard_model->get_last_row();
         if ($idoa == 1) {
             return 1;
         } else {

@@ -84,6 +84,11 @@ class User extends CI_Controller{
                 "padres" => $this->standard->get_padres(),
                 "tree" => $this->standard->get_standard(),
                 "hijos" => $this->standard->get_hijos(),
+                "sessioninitialized" => "yes",
+                "collections" => $this->collection_sub_helper->get_collection_list(),
+                "numoas_collection" => $this->collection_sub_helper->get_num_oas_collections(),
+                "subcollections" => $this->collection_sub_helper->get_subcollection_list(),
+                "numoas_subcollections" => $this->collection_sub_helper->get_num_oas_subcollections(),
                 "main" => "user/form"
             );
             $this->load->view("layouts/user_template", $data);
