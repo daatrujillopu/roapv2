@@ -54,6 +54,7 @@ class Session extends CI_Controller{
             foreach($result as $row)
             {
                 $sess_array = array(
+                    'id' => $row["iduser"],
                     'username' => $row["name"]." ". $row["lastname"],
                     'role' => $row["role"],
                     'user_state' => $row["valided"],

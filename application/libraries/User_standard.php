@@ -608,7 +608,7 @@ class User_standard
 
 
 
-    public function get_metadata_to_show($collection= "0", $subcollection = "0")
+    public function get_metadata_to_show($collection= "0", $subcollection = "0", $search = "0")
     {
 
             $metadatashow = $this->CI->user_model->get_show_metadata();
@@ -616,67 +616,79 @@ class User_standard
 
         //print_r($metadatashow);
 
-        if($collection=="0"&&$subcollection=="0"){
+        if($collection=="0"&&$subcollection=="0"&&$search=="0"){
             $oas = $this->CI->user_model->get_existing_oas();
-        }elseif($collection!="0"&&$subcollection=="0"){
+        }elseif($collection!="0"&&$subcollection=="0"&&$search=="0"){
+
             $oas = $this->CI->user_model->get_existing_oas($collection);
-        }elseif($collection!="0"&&$subcollection!="0"){
+        }elseif($collection!="0"&&$subcollection!="0"&&$search=="0"){
+
             $oas = $this->CI->user_model->get_existing_oas($collection, $subcollection);
+        }elseif($search!="0"){
+            $oas = $this->get_oas_search($search);
+            if(count($oas)==0){
+                $oas = array();
+            }
         }
+
         $returnmetadata = array();
         $returnmetadata2 = array();
         $dato = "";
-        foreach ($oas as $oa) {
-            foreach ($metadatashow as $key) {
-                $dato = "";
-                //echo $key["metadato"];
-                $father = $this->get_father_father(str_replace(' ', '', strtolower($this->CI->user_model->get_metadato_father($key["id_metadato"]))));
-                $father2 = $this->CI->user_model->get_id_father($father);
-                $father3 = $this->CI->user_model->get_info_metadato($father2);
-                $parentidfather = $this->CI->user_model->get_parentid($father);
-                if ($parentidfather == "0") {
-                    if ($father3[0]["tipo"] == "single") {
-                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
-                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
-                        $dato = $this->CI->user_model->consult_metadato_oa_table($elpadre, $elhijo, $oa["id_oa"]);
 
-                    }else{
-                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
-                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
-                        $dato = $this->CI->user_model->consult_oa_table($elpadre, $elpadre, $elhijo, $oa["id_oa"]);
-                    }
-                } else {
+        if(count($oas)>0){
+            foreach ($oas as $oa) {
+                foreach ($metadatashow as $key) {
+                    $dato = "";
+                    //echo $key["metadato"];
                     $father = $this->get_father_father(str_replace(' ', '', strtolower($this->CI->user_model->get_metadato_father($key["id_metadato"]))));
-                    //echo $father;
                     $father2 = $this->CI->user_model->get_id_father($father);
                     $father3 = $this->CI->user_model->get_info_metadato($father2);
-                    //print_r($father3);
-                    if ($father3[0]["parentid"] == 0) {
-                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
-                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
-                        $dato = $this->CI->user_model->consult_oa_table($elpadre, $elpadre, $elhijo, $oa["id_oa"]);
-                        //echo $elpadre."_".$elhijo;
+                    $parentidfather = $this->CI->user_model->get_parentid($father);
+                    if ($parentidfather == "0") {
+                        if ($father3[0]["tipo"] == "single") {
+                            $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                            $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                            $dato = $this->CI->user_model->consult_metadato_oa_table($elpadre, $elhijo, $oa["id_oa"]);
 
+                        }else{
+                            $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                            $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                            $dato = $this->CI->user_model->consult_oa_table($elpadre, $elpadre, $elhijo, $oa["id_oa"]);
+                        }
                     } else {
-                        $superpadre = $this->get_father_father(str_replace(" ", "", strtolower($father3[0]["metadato"])));
-                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
-                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
-                        $dato = $this->CI->user_model->consult_oa_table($superpadre, $elpadre, $elhijo, $oa["id_oa"]);
+                        $father = $this->get_father_father(str_replace(' ', '', strtolower($this->CI->user_model->get_metadato_father($key["id_metadato"]))));
+                        //echo $father;
+                        $father2 = $this->CI->user_model->get_id_father($father);
+                        $father3 = $this->CI->user_model->get_info_metadato($father2);
+                        //print_r($father3);
+                        if ($father3[0]["parentid"] == 0) {
+                            $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                            $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                            $dato = $this->CI->user_model->consult_oa_table($elpadre, $elpadre, $elhijo, $oa["id_oa"]);
+                            //echo $elpadre."_".$elhijo;
+
+                        } else {
+                            $superpadre = $this->get_father_father(str_replace(" ", "", strtolower($father3[0]["metadato"])));
+                            $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                            $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                            $dato = $this->CI->user_model->consult_oa_table($superpadre, $elpadre, $elhijo, $oa["id_oa"]);
+                        }
+
+                    }
+                    //print_r($dato);
+                    if(is_array($dato)){
+                        foreach ($dato as $metadatore) {
+                            $returnmetadata2["" . $elpadre . "_" . $elhijo] = $metadatore["" . $elpadre . "_" . $elhijo];
+                        }
                     }
 
-                }
-                //print_r($dato);
-                if(is_array($dato)){
-                    foreach ($dato as $metadatore) {
-                        $returnmetadata2["" . $elpadre . "_" . $elhijo] = $metadatore["" . $elpadre . "_" . $elhijo];
-                    }
-                }
 
-
+                }
+                $returnmetadata2["id_oa"] = $oa["id_oa"];
+                $returnmetadata[] = $returnmetadata2;
             }
-            $returnmetadata2["id_oa"] = $oa["id_oa"];
-            $returnmetadata[] = $returnmetadata2;
         }
+
         return $returnmetadata;
     }
 
@@ -744,5 +756,87 @@ class User_standard
     public function get_own_users_oas(){
         return $this->CI->user_model->get_users_upload_oas();
     }
+
+    public function get_oas_search($words){
+        $metadatasearcheable= $this->CI->user_model->get_searcheable_metadata();
+        $oas = $this->CI->user_model->get_existing_oas();
+        $oasfound = array();
+        foreach ($oas as $oa) {
+            foreach ($metadatasearcheable as $key) {
+                $dato = "";
+                //echo $key["metadato"];
+                $father = $this->get_father_father(str_replace(' ', '', strtolower($this->CI->user_model->get_metadato_father($key["id_metadato"]))));
+                $father2 = $this->CI->user_model->get_id_father($father);
+                $father3 = $this->CI->user_model->get_info_metadato($father2);
+                $parentidfather = $this->CI->user_model->get_parentid($father);
+                if ($parentidfather == "0") {
+                    if ($father3[0]["tipo"] == "single") {
+                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                        if($this->CI->user_model->consult_metadato_oa_table_search($elpadre, $elhijo, $oa["id_oa"], $words)){
+                            $oasfound[] = array(
+                                "id_oa" => $oa["id_oa"]
+                            );
+                        }
+
+
+                    }else{
+                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                        if($this->CI->user_model->consult_oa_table_search($elpadre, $elpadre, $elhijo, $oa["id_oa"], $words)){
+                            $oasfound[] = array(
+                                "id_oa" => $oa["id_oa"]
+                            );
+                        }
+                    }
+                } else {
+                    $father = $this->get_father_father(str_replace(' ', '', strtolower($this->CI->user_model->get_metadato_father($key["id_metadato"]))));
+                    //echo $father;
+                    $father2 = $this->CI->user_model->get_id_father($father);
+                    $father3 = $this->CI->user_model->get_info_metadato($father2);
+                    //print_r($father3);
+                    if ($father3[0]["parentid"] == 0) {
+                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                        if($this->CI->user_model->consult_oa_table_search($elpadre, $elpadre, $elhijo, $oa["id_oa"], $words)){
+                            $oasfound[] = array(
+                                "id_oa" => $oa["id_oa"]
+                            );
+                        }
+
+                    } else {
+                        $superpadre = $this->get_father_father(str_replace(" ", "", strtolower($father3[0]["metadato"])));
+                        $elpadre = str_replace(" ", "", strtolower($father3[0]["metadato"]));
+                        $elhijo = str_replace(" ", "", strtolower($key["metadato"]));
+                        if($this->CI->user_model->consult_oa_table_search($elpadre, $elpadre, $elhijo, $oa["id_oa"], $words)){
+                            $oasfound[] = array(
+                                "id_oa" => $oa["id_oa"]
+                            );
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return $this->unique_multidim_array($oasfound, "id_oa");
+
+    }
+
+    function unique_multidim_array($array, $key){
+        $temp_array = array();
+        $i = 0;
+        $key_array = array();
+
+        foreach($array as $val){
+            if(!in_array($val[$key],$key_array)){
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
+            }
+            $i++;
+        }
+        return $temp_array;
+    }
+
 }
 ?>

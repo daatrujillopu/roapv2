@@ -10,10 +10,13 @@
     <div class="row">
         <div class="col-sm-1">
         </div>
-        <div class="input-group has-warning col-sm-10">
-                    <label style="display:none;" for="search_objects"> Busqueda</label>
+        <div role="form">
+            <div class="input-group has-warning col-sm-10">
+                        <label style="display:none;" for="search_objects"> Busqueda</label>
 
-                    <input type="text" id="search_objects" class="form-control" >
-                    <span class=" input-group-btn "><i><button class="btn btn-success btn btn-success">Buscar</button></i></span>
+                            <input type="text" id="search_objects" class="form-control" >
+                            <span class=" input-group-btn "><i><button class="btn btn-success btn btn-success" id="search_oas_container">Buscar</button></i></span>
+
+            </div>
         </div>
     </div>

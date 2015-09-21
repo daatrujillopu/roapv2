@@ -326,6 +326,28 @@ class User_model extends CI_Model{
         }
     }
 
+    public function consult_metadato_oa_table_search($padre, $hijo, $oa, $words){
+        $this->db->select($padre."_".$hijo);
+        $this->db->from("oas");
+        $this->db->where("id_oa", $oa);
+        $i = 1;
+        for($j=0; $j<count($words); $j++){
+            if($i==1){
+                $this->db->like("lower(".$padre."_".$hijo.")", $words[$j]);
+            }else{
+                $this->db->or_like("lower(".$padre."_".$hijo.")", $words[$j]);
+            }
+            $i++;
+        }
+        $query = $this->db->get();
+        //echo $this->db->last_query();
+        if($query->num_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function consult_oa_table($supfather, $padre, $hijo, $oa){
         if($supfather==$padre){
             $this->db->select($supfather."_".$hijo);
@@ -339,6 +361,47 @@ class User_model extends CI_Model{
         $query = $this->db->get();
         //echo $this->db->last_query();
         return $query->result_array();
+
+    }
+
+    public function consult_oa_table_search($supfather, $padre, $hijo, $oa, $words){
+        if($supfather==$padre){
+            $this->db->select($supfather."_".$hijo);
+            $this->db->from($supfather);
+            $i = 1;
+            for($j=0; $j<count($words); $j++){
+                if($i==1){
+                    $this->db->like("lower(".$supfather."_".$hijo.")", $words[$j]);
+                }else{
+                    $this->db->or_like("lower(".$supfather."_".$hijo.")", $words[$j]);
+                }
+                $i++;
+            }
+        }else{
+            $this->db->select($padre."_".$hijo);
+            $this->db->from($supfather."_".$padre);
+            $i = 1;
+            for($j=0; $j<count($words); $j++){
+                if($i==1){
+                    $this->db->like("lower(".$padre."_".$hijo.")", $words[$j]);
+                }else{
+                    $this->db->or_like("lower(".$padre."_".$hijo.")", $words[$j]);
+                }
+                $i++;
+            }
+
+        }
+
+        $this->db->where("id_oa", $oa);
+        $query = $this->db->get();
+        //echo $this->db->last_query();
+        //print_r($query->count_rows());
+        if($query->count_rows()>0){
+            return true;
+        }else{
+            return false;
+        }
+
 
     }
 
@@ -362,6 +425,11 @@ class User_model extends CI_Model{
 
     public function get_show_hide_metadata(){
         $query = $this->db->get_where("metadatos", array("show_hide_metadata" => "true"));
+        return $query->result_array();
+    }
+
+    public function get_searcheable_metadata(){
+        $query = $this->db->get_where("metadatos", array("is_searchable" => "true"));
         return $query->result_array();
     }
 

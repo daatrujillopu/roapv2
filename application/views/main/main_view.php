@@ -2,7 +2,7 @@
 <div class="container" style="width: 100%">
     <div class="row">
         <div class="box col-md-12">
-            <div class="box-inner">
+            <div class="box-inner" id="first_metadata">
                 <div class="box-header well" data-original-title="">
                     <h2><i class="glyphicon glyphicon-user"></i><?=$container_title?> <span style="margin-left: 20px;">Objetos Encontrados (<?=count($metadatos)?>)</span></h2>
                     <div class="box-icon">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="box-content">
-                    <div class="box-content" id="first_metadata">
+                    <div class="box-content" >
                         <?php
                         if(count($metadatos)>0) {
                             $keysarray = array_keys($metadatos[0]);
@@ -80,6 +80,17 @@
                                                 <a href="<?= base_url() ?>main/get_xml_oa"
                                                    class="btn btn-xs btn-round blue btn-default"><i
                                                         class="glyphicon glyphicon-book"></i></a>
+                                                <?php if(isset($user_logged)) {
+                                                    if ($own_user["idlo"] == $key["id_oa"]&&$user_logged == $own_user["iduser"]) {
+                                                        ?>
+                                                        <a href="<?= base_url() ?>main/edit_oa/<?= $key["id_oa"] ?>"
+                                                           class="btn btn-xs btn-round blue btn-default"><i
+                                                                class="glyphicon glyphicon-edit"></i></a>
+                                                        <?php
+                                                    }
+                                                }
+                                        ?>
+
                                             </div>
 
 
@@ -113,10 +124,11 @@
                         }
                         ?>
                     </div>
-                    <div class="box-content" id="">
 
-                    </div>
                 </div>
+            </div>
+            <div class="box-inner" id="search_oas" style="display: none;">
+
             </div>
         </div>
     </div>
@@ -131,4 +143,19 @@
             $(this).attr("data-status", "hide");
         }
     });
+    $("#search_oas_container").click(function () {
+        var word = $("#search_objects").val();
+
+        if(word.length>2){
+            word = word.replace(/ /g,"_");
+            $("#search_oas").load("<?=base_url()?>index.php/main/search_oas/"+word);
+            $("#search_oas").show();
+            $("#first_metadata").hide();
+        }
+        if(word.length==0){
+            $("#first_metadata").show();
+            $("#search_oas").hide();
+        }
+    })
+
 </script>
