@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="box-content">
-                    <div class="box-content">
+                    <div class="box-content" id="first_metadata">
                         <?php
                         if(count($metadatos)>0) {
                             $keysarray = array_keys($metadatos[0]);
@@ -112,6 +112,9 @@
                             }
                         }
                         ?>
+                    </div>
+                    <div class="box-content" id="">
+
                     </div>
                 </div>
             </div>

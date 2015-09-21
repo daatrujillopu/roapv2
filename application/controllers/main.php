@@ -144,4 +144,8 @@ class Main extends CI_Controller{
         $this->load->view("layouts/main_template", $content);
     }
 
+    public function show_pagination_oas(){
+
+    }
+
 }
