@@ -390,6 +390,25 @@ class User_model extends CI_Model{
         $this->db->query("update lo set xmlo=concat(xmlo,'".$xml."') where idlo=".$oa);
     }
 
+    //**********************************Actualizar Collection y SubCollection*****************
+
+    function update_collection($id_oa, $collection){
+        $data = array(
+          "idcollection" => $collection
+        );
+        $this->db->where("id_oa", $id_oa);
+        $this->db->update("oas", $data);
+    }
+
+    function update_subcollection($id_oa, $subcollection){
+        $data = array(
+            "idsubcollection" => $subcollection
+        );
+        $this->db->where("id_oa", $id_oa);
+        $this->db->update("oas", $data);
+
+    }
+
 
 
 }

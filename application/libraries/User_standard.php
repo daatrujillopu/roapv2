@@ -414,16 +414,30 @@ class User_standard
 
     }
 
-    public function reserve_id_oa($extension, $id_oa)
+    public function reserve_id_oa($extension, $id_oa, $collection, $subcollection)
     {
         $metadatolocation = $this->CI->user_model->get_metadato_location();
         if ($metadatolocation[0]["tipo"] != "multiple") {
             $father = $this->get_father_father(strtolower($metadatolocation[0]["metadato"]));
             //echo "padre location" .$father;
             $this->insert_in_oas($father, str_replace(" ", "", strtolower($metadatolocation[0]["metadato"])), $id_oa, $extension);
+
         }
 
+        $this->update_reserve_id_oa_collection($id_oa, $collection);
+        $this->update_reserve_id_oa_subcollection($id_oa, $subcollection);
 
+
+
+    }
+
+    public function update_reserve_id_oa_collection($id_oa, $collection){
+        $this->CI->user_model->update_collection($id_oa, $collection);
+    }
+    public function update_reserve_id_oa_subcollection($id_oa, $subcollection){
+        if((string)$subcollection!=="0"){
+            $this->CI->user_model->update_subcollection($id_oa, $subcollection);
+        }
 
     }
 

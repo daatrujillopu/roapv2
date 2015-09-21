@@ -58,6 +58,9 @@ class User extends CI_Controller{
                 "numoas_subcollections" => $this->collection_sub_helper->get_num_oas_subcollections(),
             );
             $this->load->view("layouts/user_template", $data);
+        }else{
+            $this->session->unset_userdata("logged_in");
+            redirect("main", "refresh");
         }
 
 
@@ -183,7 +186,8 @@ class User extends CI_Controller{
             $nombre = $_FILES['archivo']['name'];
             $extension = end(explode(".", $nombre));
             $config['file_name'] = $actual_id.".".$extension;
-
+            $collection = $this->input->post("currentcollec");
+            $subcollection = $this->input->post("currentsubcollec");
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('archivo')) {
@@ -194,7 +198,7 @@ class User extends CI_Controller{
 //
 //                $this->load->view('formulario_carga', $error);
             }else{
-                $this->standard->reserve_id_oa($extension,$actual_id);
+                $this->standard->reserve_id_oa($extension,$actual_id, $collection, $subcollection);
                 echo base64_encode($this->encrypt->encode($actual_id));
             }
 
