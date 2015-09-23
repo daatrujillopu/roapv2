@@ -49,6 +49,9 @@ class Installer extends CI_Controller{
           show_hide_metadata boolean DEFAULT false,
           parentid integer,
           is_location boolean DEFAULT false,
+          is_searchable boolean NOT NULL DEFAULT false,
+          is_format boolean DEFAULT false,
+          is_size boolean NOT NULL DEFAULT false,
           CONSTRAINT metadato_fk PRIMARY KEY (id_metadato)
         )");
         for ($j = 0; $j < count($datametadata); $j++) {
@@ -67,9 +70,13 @@ class Installer extends CI_Controller{
                 $required_metadata = $datametadata[$j][7];
                 $parentid = $datametadata[$j][8];
                 $is_location = $datametadata[$j][9];
+                $is_searchable = $datametadata[$j][10];
+                $is_format = $datametadata[$j][11];
+                $is_size = $datametadata[$j][12];
 
-                $this->installer_model->execute_query("insert into metadatos (id_metadato, metadato, etiqueta, tipo, valores, mostrar, required_metadata, show_hide_metadata, parentid,
-              is_location) values('$id_metadato', '$metadato', '$etiqueta', '$tipo', '$valores', $mostrar, $required_metadata, $show_hide_metadata, $parentid, $is_location)");
+                $this->installer_model->execute_query("insert into metadatos (id_metadato, metadato, etiqueta, tipo, valores, mostrar, required_metadata,
+                show_hide_metadata, parentid, is_location, is_searchable, is_format, is_size) values('$id_metadato', '$metadato', '$etiqueta', '$tipo', '$valores',
+                $mostrar, $required_metadata, $show_hide_metadata, $parentid, $is_location, $is_searchable, $is_format, $is_size)");
             }
 
 

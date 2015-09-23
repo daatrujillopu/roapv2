@@ -66,22 +66,22 @@
                                                 subida:</strong> <?php if ($own_user["idlo"] == $key["id_oa"]) echo date("d-m-Y", strtotime($own_user["insertiondate"])) ?>
                                         </div>
                                         <div class="col-sm-12">
-                                            <strong>Valoración:</strong> Danny
+                                            <strong>Valoración:</strong>
                                         </div>
                                         <div class="col-sm-12">
-                                            <strong>Calidad de los metadatos:</strong> Danny
+                                            <strong>Calidad de los metadatos:</strong>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label"><strong>Opciones:</strong></label>
-                                                <a href="<?= base_url() ?>main/download_oa"
+                                                <a href="<?= base_url() ?>main/download_oa/<?=$key["id_oa"]?>"
                                                    class="btn btn-xs btn-round blue btn-default"><i
                                                         class="glyphicon glyphicon-arrow-down"></i></a>
-                                                <a href="<?= base_url() ?>main/get_xml_oa"
+                                                <a href="<?= base_url() ?>main/get_xml_oa/<?=$key["id_oa"]?>"
                                                    class="btn btn-xs btn-round blue btn-default"><i
                                                         class="glyphicon glyphicon-book"></i></a>
-                                                <?php if(isset($user_logged)) {
-                                                    if ($own_user["idlo"] == $key["id_oa"]&&$user_logged == $own_user["iduser"]) {
+                                                <?php if (isset($user_logged)) {
+                                                    if ($own_user["idlo"] == $key["id_oa"] && $user_logged == $own_user["iduser"]) {
                                                         ?>
                                                         <a href="<?= base_url() ?>main/edit_oa/<?= $key["id_oa"] ?>"
                                                            class="btn btn-xs btn-round blue btn-default"><i
@@ -89,7 +89,7 @@
                                                         <?php
                                                     }
                                                 }
-                                        ?>
+                                                ?>
 
                                             </div>
 
@@ -136,10 +136,12 @@
 <script>
     $(".showing_hide").click(function () {
         if($(this).attr("data-status")=="hide"){
-            $("#"+$(this).attr("data-id")).show();
+            $("#"+$(this).attr("data-id")).show('slow');
+            $(this).text('Ver Menos');
             $(this).attr("data-status", "show");
         }else{
-            $("#"+$(this).attr("data-id")).hide();
+            $("#"+$(this).attr("data-id")).hide('slow');
+            $(this).text('Ver Mas');
             $(this).attr("data-status", "hide");
         }
     });

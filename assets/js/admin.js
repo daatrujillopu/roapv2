@@ -49,6 +49,34 @@ $(function () {
         });
     });
 
+    $(".showhidemetadata").change(function (e) {
+        e.preventDefault();
+        var sendata = {};
+        sendata[$("#csrf_name").val()] = $("#csrf_token").val();
+        sendata["id"] = $(this).attr('id');
+        var state = "FALSE";
+        if ($(this).is(":checked")) {
+            state = "TRUE"
+        }
+        sendata["state"] = state;
+        $.ajax({
+            url: base_url + "index.php/admin/change_show_hide_metadata/",
+            type: "POST",
+            data: sendata
+        }).done(function () {
+
+            var n = ({
+                text: "Cambios Guardados Completamente",
+                layout: "topRight",
+                type: "information",
+                animateOpen: {"opacity": "show"}
+
+            });
+
+            noty(n);
+        });
+    });
+
 
     $(".requiredmetadata").change(function (e) {
         e.preventDefault();
