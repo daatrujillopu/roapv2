@@ -76,12 +76,31 @@ class User extends CI_Controller{
     public function form_metadata($id_oa) {
         if($this->session->userdata("logged_in")){
             //echo $id_oa;
-            $this->config->set_item('csrf_protection', TRUE);
 
             $this->standard->structure_standard();
             $this->actualoa_id = $this->standard->get_actual_id();
-            $data = array(
 
+            $oa = $this->encrypt->decode(base64_decode($id_oa));
+            $location = $this->standard->get_metadata_location();
+            $location2 = explode("_",$location);
+            $padre = $location2[0];
+            $hijo = $location2[1];
+            $locationdato = $this->standard->get_data_in_oas($padre, $hijo, $oa);
+
+            $size = $this->standard->get_metadata_size();
+            $size2 = explode("_",$size);
+            $padre = $size2[0];
+            $hijo = $size2[1];
+            $sizedato = $this->standard->get_data_in_oas($padre, $hijo, $oa);
+
+            $formato = $this->standard->get_metadata_format();
+            $formato2 = explode("_",$formato);
+            $padre = $formato2[0];
+            $hijo = $formato2[1];
+            $formatdato = $this->standard->get_data_in_oas($padre, $hijo, $oa);
+
+
+            $data = array(
                 "actual_id" => $id_oa,
                 "spadres" => $this->standard->get_spadres(),
                 "padres" => $this->standard->get_padres(),
@@ -92,6 +111,12 @@ class User extends CI_Controller{
                 "numoas_collection" => $this->collection_sub_helper->get_num_oas_collections(),
                 "subcollections" => $this->collection_sub_helper->get_subcollection_list(),
                 "numoas_subcollections" => $this->collection_sub_helper->get_num_oas_subcollections(),
+                "location" => $location,
+                "locationdato" => $locationdato[0][$location],
+                "size" => $size,
+                "sizedato" => $sizedato[0]["$size"],
+                "format" => $formato,
+                "formatdato" => $formatdato["0"][$formato],
                 "main" => "user/form"
             );
             $this->load->view("layouts/user_template", $data);
@@ -185,10 +210,18 @@ class User extends CI_Controller{
             $config['max_size'] = '1000000';
             $nombre = $_FILES['archivo']['name'];
             $extension = end(explode(".", $nombre));
+            $size = $_FILES['archivo']['size'];
             $config['file_name'] = $actual_id.".".$extension;
             $collection = $this->input->post("currentcollec");
             $subcollection = $this->input->post("currentsubcollec");
             $this->load->library('upload', $config);
+            if($size<1000){
+                $size = $size."bytes";
+            }elseif($size>1000&&$size<1000000){
+                $size = $size."kb";
+            }else{
+                $size = $size."mb";
+            }
 
             if (!$this->upload->do_upload('archivo')) {
                 echo "errores";
@@ -198,7 +231,7 @@ class User extends CI_Controller{
 //
 //                $this->load->view('formulario_carga', $error);
             }else{
-                $this->standard->reserve_id_oa($extension,$actual_id, $collection, $subcollection);
+                $this->standard->reserve_id_oa($extension,$actual_id, $collection, $subcollection, base_url()."upload/".$actual_id."/".$actual_id.".".$extension, $size, $extension);
                 echo base64_encode($this->encrypt->encode($actual_id));
             }
 

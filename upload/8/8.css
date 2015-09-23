@@ -1,0 +1,698 @@
+/*
+
+Theme Name: Inovado Child
+
+Description: Inovado Child Theme
+
+Author: Your name here
+
+Template: inovado
+
+Version: 1.0
+
+*/
+
+
+
+@import url("../inovado/style.css");
+
+
+
+/* ==========================================================================
+
+   FORM
+
+========================================================================== */
+
+#comment-title {
+
+font-size: 1.1vw;
+
+    color: #6cbd4b;
+
+display: block;
+
+font-style: normal;
+
+/* font-size: 19px; */
+
+/* font-weight: 400; */
+
+letter-spacing: 0px;
+
+text-transform: none;
+
+    line-height: 18px;
+
+    margin: 10px 0 0 0;
+
+}
+
+
+
+form hr {  
+
+    margin: 10px 0 10px;
+
+display:none;
+
+}
+
+.ajax-loader {
+
+display: none;
+
+}
+
+
+
+.div-button {
+
+	width: 38%  ;display: inline-block; vertical-align: bottom; margin-bottom: 7px;
+
+}
+
+
+
+.text-form {font-size: 15px;
+
+font-style: italic;
+
+font-weight: 400;
+
+letter-spacing: 0.5px;
+
+line-height: 1.3;}
+
+
+
+
+
+
+
+
+
+#wpcf7-f16-o1 {
+
+    position: absolute;
+
+    z-index: 100;
+
+    /* float: right; */
+
+    background-image: url('http://www.direct-business-loans.com/wp-content/uploads/2014/04/bg-blue-striped-2.png'); opacity:0.90;
+  filter:alpha(opacity=60);
+
+    left: 50%;
+
+    height: 100%;
+
+    width: 38%;
+
+
+
+}
+
+
+
+.bloc-input {
+
+display: inline-block;
+
+width: 48%;
+
+padding-top: 5px;
+
+padding-bottom: 5px;
+
+height: 20%;
+
+}
+
+.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required.singletext {
+
+width: 90%;
+
+}
+
+.form-wrapper {
+
+    box-sizing: border-box;
+
+    -moz-box-sizing: border-box;
+
+    color: #ffffff;
+
+    height: 100%;
+
+    padding: 30px 0 30px 30px;
+
+    position: absolute;
+
+    width: 100%;
+
+}
+
+
+
+.bloc-input-all {
+
+    width: 100%;
+
+    height: 80%;
+
+}
+
+
+
+.form-wrapper h3 {
+
+    line-height: 0.8;
+
+    letter-spacing: 0;
+
+font-size: 2.2vw;
+
+width:92%;
+
+
+
+    color:white;
+
+}
+
+
+
+.form-wrapper .form-co {
+
+    display: block;
+
+    font-size: 20px;
+
+    font-style: italic;
+
+    font-weight: 300;
+
+    line-height: 19px;
+
+    margin-bottom: 1px;
+
+}
+
+
+
+.form-wrapper .form-co span {
+
+    color: #f4b905;
+
+    font-style: normal;
+
+    font-weight: 600;
+
+}
+
+
+
+.form-wrapper label {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-style: italic;
+
+    font-weight: 400;
+
+    letter-spacing: 0.5px;
+
+    margin-top: 6px;
+
+}
+
+
+
+.form-wrapper input, .form-wrapper select { 
+
+    border: none;
+
+    font-family: 'Lato', sans-serif;
+
+    width: 90%;
+
+    text-indent: 5px;
+
+	-webkit-appearance: none;
+
+	border-radius: 0;
+
+}
+
+
+
+.form-wrapper .left {
+
+    float: left;
+
+}
+
+
+
+.form-wrapper .right {
+
+    float: right;
+
+}
+
+
+
+.form-wrapper .dropdown {
+
+	width: 176px;
+
+	overflow: hidden;
+
+}
+
+
+
+.form-wrapper .dropdown select {
+
+	width: 193px;
+
+	height: 23px;
+
+	background-color: #ffffff;
+
+	background-image: url('../img/drop-down-arrow.png');
+
+	background-repeat: no-repeat;
+
+	background-position: 154px center;
+
+}
+
+
+
+.process .btn-wrap {
+
+	margin-bottom: -60px;
+
+	padding-top: 35px;
+
+}
+
+
+
+.process .btn-wrap, .form-wrapper .btn-wrap {
+
+    width: 100%;
+
+    display: table;
+
+    text-align: center;
+
+}
+
+
+
+.process .btn-quote, .form-wrapper .btn-quote {
+
+    font-weight: 600;
+
+    margin-top: 18px;
+
+    min-width: 198px;
+
+    width: auto;
+
+}
+
+
+
+.form-wrapper .form-icons {
+
+    padding-top: 15px;
+
+    width: 176px;
+
+}
+
+
+
+.form-wrapper .form-icons .bbb-badge {
+
+    margin-right: 10px;
+
+}
+
+
+
+.form-outine {
+
+    background: rgba(14,54,88,0.5);
+
+    height: 484px;
+
+    margin-top: 40px;
+
+    padding: 2px 0 0 2px;
+
+    width: 467px;
+
+}
+
+
+
+.form-v2 h2 {
+
+    margin: 21px 0;
+
+}
+
+
+
+.form-v2 label {
+
+    margin-top: 11px;
+
+}
+
+
+
+.form-v2 .form-icons {
+
+    padding-top: 22px;
+
+}
+
+
+
+.form-v2 .btn-wrap {
+
+    width: 100%;
+
+    display: table;
+
+    text-align: center;
+
+}
+
+
+
+.form-v2 .btn-quote {
+
+    font-weight: 600;
+
+    margin: 28px auto 0 auto;
+
+    min-width: 198px;
+
+    width: auto;
+
+}
+
+
+
+.wpcf7-form-control.wpcf7-submit.sendbutton {
+
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+
+	background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+	background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+	background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+	background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+	background:linear-gradient(to bottom, #febb02 5%, #f79509 100%);
+
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+
+	background-color:#89c403;
+
+	-moz-border-radius:6px;
+
+	-webkit-border-radius:6px;
+
+	border-radius:6px;
+
+	border:1px solid #FFFFFF;
+
+	/* display: inline-block; */
+
+	cursor:pointer;
+
+	color:#1d3764;
+
+	font-family:arial;
+
+	font-size: 12px;
+
+	font-weight:bold;
+
+	padding: 12px 0px;
+
+	text-decoration:none;
+
+	text-shadow:0px 1px 0px #528009;
+
+	width: 110%;
+
+	-webkit-box-reflect: below 2px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent) , to(rgba(250, 250, 250, 0.1)));
+
+}
+
+.wpcf7-form-control.wpcf7-submit.sendbutton:hover {
+
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+
+	background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+	background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+	background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+	background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+
+	background-color:#77a809;
+
+}
+
+.wpcf7-form-control.wpcf7-submit.sendbutton:active {
+
+	position:relative;
+
+	top:1px;
+
+}
+
+
+
+@media (max-width: 850px) {
+
+.div-button {margin-bottom:-8px !important;}
+
+#comment-title {font-size:12px;}
+
+}
+
+
+
+@media (max-width: 767px) {
+
+#wpcf7-f16-o1 {
+
+    left:40% !important; 
+
+    width:50% !important;
+
+
+
+}
+
+.form-wrapper {
+
+
+
+padding: 10px 30px;}
+
+
+
+
+
+.text-form {
+
+font-size: 12px;
+
+}
+
+.wpcf7-form input {
+
+    padding:2px;
+
+    font-size:15px
+
+}
+
+
+
+.wpcf7-form select {
+
+    padding:2px;
+
+    font-size:14px
+
+}
+
+.bloc-input{
+
+    height:15%
+
+    
+
+}
+
+
+
+.wpcf7-form-control.wpcf7-submit.sendbutton{
+
+    font-size:1.4vW
+
+}
+
+
+
+}
+
+
+
+@media (max-width: 600px) {
+
+#wpcf7-f16-o1 {
+
+    left:0px !important; 
+
+    width:100% !important;
+
+
+
+}
+
+
+
+.wpcf7-form-control.wpcf7-submit.sendbutton{
+
+    font-size:12px;
+
+}
+
+
+
+.bloc-input{
+
+    height:10%;
+
+    width:100%;
+
+    padding-left:5px;
+
+}
+
+
+
+.fullwidthbanner-container{height:450px !important;}
+
+.tp-leftarrow.default {display:none;}
+
+.tp-rightarrow.default {display:none;}
+
+.tp-bullets {display:none;}
+
+.wpcf7-form-control.wpcf7-text.wpcf7-validates-as-required.singletext {width:98% !important;}
+
+.wpcf7-form select {width:98% !important;}
+
+.div-button {width:98% !important; margin: 10px 5px;}
+
+#comment-title {font-size:12px;}
+
+
+
+}
+
+
+
+@media (max-width: 500px) {
+
+    #comment-title {
+
+        
+
+    }
+
+    .form-wrapper hr{
+
+        
+
+    }
+
+    .form-wrapper h3{
+
+        font-size:12px;
+
+	font-weight:bold;
+
+    }
+
+    .wpcf7-form-control.wpcf7-submit.sendbutton{
+
+    padding: 5px;
+
+        
+
+    }
+
+}
+
+
+
+@media (max-width: 480px) {
+
+#topbar .callus { height:63px !important; }
+
+}
+
+
+
+@media (min-width: 1366px) { #wpcf7-f16-o1 {width:35% !important; } }
+
+
+
+@media (min-width: 1440px) { #wpcf7-f16-o1 {width:31% !important; } }
+
+
+
+@media (min-width: 1600px) { #wpcf7-f16-o1 {left:48% !important; width:28% !important; } }
+
+
+
+@media (min-width: 1920px) { #wpcf7-f16-o1 {width:25% !important; } }
+
+
+
+@media (min-width: 2400px) { #wpcf7-f16-o1 {width:20% !important; } }
+
+
+
+.tp-bannertimer {height:5px !important;}

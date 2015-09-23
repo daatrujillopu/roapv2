@@ -195,9 +195,17 @@ class User_standard
 
         } else {
             //No Existe ningun registro
-            $this->CI->user_model->insert_metadato_oa_suppadre($padre, $hijo, $dato);
+            $this->CI->user_model->insert_metadato_oa_suppadre($padre, $hijo, $dato, $oa);
         }
     }
+
+    public function get_data_in_oas($padre, $hijo, $oa){
+        return $this->CI->user_model->get_metadato_oa_suppadre($padre, $hijo, $oa);
+    }
+
+    /*public function get_data_in_table($padre, $hijo, $oa, $dato, $orden){
+        $this->CI->user_model->get_metadato_oa_suppadre($padre, $hijo, $oa);
+    }*/
 
     /**
      * Función en busca de la si existe el id del OA
@@ -414,15 +422,23 @@ class User_standard
 
     }
 
-    public function reserve_id_oa($extension, $id_oa, $collection, $subcollection)
+    public function reserve_id_oa($extension, $id_oa, $collection, $subcollection, $location, $size, $format)
     {
         $metadatolocation = $this->CI->user_model->get_metadato_location();
         if ($metadatolocation[0]["tipo"] != "multiple") {
             $father = $this->get_father_father(strtolower($metadatolocation[0]["metadato"]));
             //echo "padre location" .$father;
-            $this->insert_in_oas($father, str_replace(" ", "", strtolower($metadatolocation[0]["metadato"])), $id_oa, $extension);
+            $this->insert_in_oas($father, str_replace(" ", "", strtolower($metadatolocation[0]["metadato"])), $id_oa, $location);
 
         }
+
+        $metadatosize = $this->CI->user_model->get_metadato_size();
+        $father = $this->get_father_father(strtolower($metadatosize[0]["metadato"]));
+        $this->insert_in_oas($father, str_replace(" ", "", strtolower($metadatosize[0]["metadato"])), $id_oa, $size);
+
+        $metadatoformat = $this->CI->user_model->get_metadato_format();
+        $father = $this->get_father_father(strtolower($metadatoformat[0]["metadato"]));
+        $this->insert_in_oas($father, str_replace(" ", "", strtolower($metadatoformat[0]["metadato"])), $id_oa, $format);
 
         $this->update_reserve_id_oa_collection($id_oa, $collection);
         $this->update_reserve_id_oa_subcollection($id_oa, $subcollection);
@@ -836,6 +852,32 @@ class User_standard
             $i++;
         }
         return $temp_array;
+    }
+
+    public function get_metadata_location(){
+        $metadatolocation = $this->CI->user_model->get_metadato_location();
+        if ($metadatolocation[0]["tipo"] != "multiple") {
+            $father = $this->get_father_father(str_replace(" ", "", strtolower($metadatolocation[0]["metadato"])));
+
+            return $father."_".str_replace(" ", "", strtolower($metadatolocation[0]["metadato"]));
+        }
+    }
+
+    public function get_metadata_size(){
+        $metadatosize = $this->CI->user_model->get_metadato_size();
+        if ($metadatosize[0]["tipo"] != "multiple") {
+            $father = $this->get_father_father(str_replace(" ", "", strtolower($metadatosize[0]["metadato"])));
+
+            return $father."_".str_replace(" ", "", strtolower($metadatosize[0]["metadato"]));
+        }
+    }
+    public function get_metadata_format(){
+        $metadatoformat = $this->CI->user_model->get_metadato_format();
+        if ($metadatoformat[0]["tipo"] != "multiple") {
+            $father = $this->get_father_father(str_replace(" ", "", strtolower($metadatoformat[0]["metadato"])));
+
+            return $father."_".str_replace(" ", "", strtolower($metadatoformat[0]["metadato"]));
+        }
     }
 
 }

@@ -53,6 +53,22 @@ class User_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function get_metadato_format(){
+        $this->db->select("*");
+        $this->db->from("metadatos");
+        $this->db->where("is_format", 'true');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_metadato_size(){
+        $this->db->select("*");
+        $this->db->from("metadatos");
+        $this->db->where("is_size", 'true');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
      /**
      * Se revisa que exista al menos una fila en la tabla
      * @param $oa
@@ -80,8 +96,9 @@ class User_model extends CI_Model{
      * @param $dato dato referenciado     *
      */
 
-    public function insert_metadato_oa_suppadre($padre, $hijo,$dato){
+    public function insert_metadato_oa_suppadre($padre, $hijo,$dato, $oa){
         $data = array(
+            "id_oa" => $oa,
             "".$padre."_".$hijo => $dato
         );
         $this->db->insert("oas", $data);
@@ -100,6 +117,14 @@ class User_model extends CI_Model{
         );
         $this->db->where("id_oa", $oa);
         $this->db->update("oas", $data);
+    }
+
+    public function get_metadato_oa_suppadre($padre, $hijo, $oa){
+        $this->db->select("".$padre."_".$hijo);
+        $this->db->from("oas");
+        $this->db->where("id_oa", $oa);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     /**

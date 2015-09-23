@@ -6,7 +6,8 @@
  * Time: 04:47 PM
  */
 
-function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$superpadre) {
+function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$superpadre, $size, $sizedato, $location, $locationdato, $format, $formatdato) {
+
     if ($indent >= 20) return;	// Stop at 20 sub levels
 
     foreach ($nodes as $node) {
@@ -38,6 +39,7 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
         }
 
         if($node["tipo"]=="text"){
+            $value = "";
             if($existsmul>0){
                 $temp = $idinput . str_replace(' ', '', strtolower($node["metadato"])) . "_1";
             }else{
@@ -49,7 +51,17 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
                 $required = "required";
                 $pophover = ' data-content="Este Campo es Requerido" title="Este Campo es Requerido"';
             }
-            echo '<label for="' . $temp . '">' . $node["etiqueta"] . '</label><input inside_multiple="1" tipo="text" type="text" class="form-control data_metadato '.$required.'" '.$pophover.'  data_oa="' . $actual_id . '" id="'.$temp.'">';
+            if(strpos($temp, $location)!==false){
+
+                $value = $locationdato;
+            }
+            if(strpos($temp, $size)!==false){
+                $value = $sizedato;
+            }
+            if(strpos($temp, $format)!==false){
+                $value = $formatdato;
+            }
+            echo '<label for="' . $temp . '">' . $node["etiqueta"] . '</label><input inside_multiple="1" tipo="text" type="text" class="form-control data_metadato '.$required.'" '.$pophover.' value="'.$value.'"  data_oa="' . $actual_id . '" id="'.$temp.'">';
 
         }
         if($node["tipo"]=="valores"){
@@ -75,8 +87,8 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
                echo '<option value="'.$elements[$i].'">'.ucfirst($elements[$i]).'<option>';
             }
             echo '</select>
-                                                                </div>
-                                                            </div>';
+                                                            </div>
+                                                        </div>';
         }
         if($node["tipo"]=="numero"){
             if($existsmul>0){
@@ -95,6 +107,7 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
         }
 
         if($node["tipo"]=="tmultiple"){
+            $value = "";
             if($existsmul>0){
                 $temp = $idinput . str_replace(' ', '', strtolower($node["metadato"])) . "_1";
             }else{
@@ -106,8 +119,20 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
                 $required = "required";
                 $pophover = 'data-content="Este Campo es Requerido" title="Escoga debe tener al menos una opción"';
             }
+
+
+            if(strpos($temp, $location)!==false){
+
+                $value = trim($locationdato);
+            }
+            if(strpos($temp, $size)!==false){
+                $value = trim($sizedato);
+            }
+            if(strpos($temp, $format)!==false){
+                $value = trim($formatdato);
+            }
             echo '<label for="'.$temp.'">'.$node["etiqueta"].'</label>';
-            echo '<input  inside_multiple="1" tipo="tmultiple"  data_oa="'.$actual_id.'" type="text"  '.$pophover.'  class=" form-control data_metadato_multiple '.$required.'" style="width: 100%;" id="'.$temp.'" data-role="tagsinput">';
+            echo '<input  inside_multiple="1" tipo="tmultiple"  data_oa="'.$actual_id.'" type="text"  '.$pophover.'  class="form-control data_metadato_multiple '.$required.'" value="'.$value.'" style="width: 100%;" id="'.$temp.'" data-role="tagsinput">';
 
         }
         if($node["tipo"]=="vmultiple"){
@@ -145,7 +170,7 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
             }
 
 
-            display_tree($node['children'], $indent + 1, $html, $actual_id, $idinput, $existsmul, $superpadre);
+            display_tree($node['children'], $indent + 1, $html, $actual_id, $idinput, $existsmul, $superpadre, $size, $sizedato, $location, $locationdato, $format, $formatdato);
 
             if($node["tipo"]=="multiple"){
                 $idinput = $superpadre;
@@ -180,7 +205,7 @@ function display_tree($nodes, $indent, $html, $actual_id, $idinput, $existsmul,$
         <?php
 
             $idinput = str_replace(' ', '', strtolower($suppadres["metadato"])) . "_";
-            $form = display_tree(array($tree[$i]), 0, "", $actual_id, $idinput, 0,$idinput);
+            $form = display_tree(array($tree[$i]), 0, "", $actual_id, $idinput, 0,$idinput, $size, $sizedato, $location, $locationdato, $format, $formatdato);
 
             //echo $form;
 
