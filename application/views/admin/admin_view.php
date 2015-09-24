@@ -56,14 +56,18 @@ function display_tree($nodes, $indent, $html, $idinput, $existsmul,$superpadre, 
                     echo '<label style="float: left; margin-top: 20px; margin-bottom: 20px;" data-noty-options="{"text":"Cambios Guardados Exitosamente ","layout":"topRight","type":"success"}}" class="checkbox-inline"  for="' . $temp . '"><input inside_multiple="1" class="showhidemetadata" type="checkbox"  id="'.$temp.'">'. $node["etiqueta"] .' </label>';
                 }
 
+            }elseif($tipo==4){
+                if($node["is_searchable"]==='t'){
+                    echo '<label style="float: left; margin-top: 20px; margin-bottom: 20px;" data-noty-options="{"text":"Cambios Guardados Exitosamente ","layout":"topRight","type":"success"}}" class="checkbox-inline"  for="' . $temp . '"><input inside_multiple="1" checked class="searchmetadata" type="checkbox"  id="'.$temp.'">'. $node["etiqueta"] .' </label>';
+                }else{
+                    echo '<label style="float: left; margin-top: 20px; margin-bottom: 20px;" data-noty-options="{"text":"Cambios Guardados Exitosamente ","layout":"topRight","type":"success"}}" class="checkbox-inline"  for="' . $temp . '"><input inside_multiple="1" class="searchmetadata" type="checkbox"  id="'.$temp.'">'. $node["etiqueta"] .' </label>';
+                }
             }else{
-
                 if($node["required_metadata"]==='t'){
                     echo '<label style="float: left; margin-top: 20px; margin-bottom: 20px;" data-noty-options="{"text":"Cambios Guardados Exitosamente ","layout":"topRight","type":"success"}}" class="checkbox-inline"  for="' . $temp . '"><input inside_multiple="1" checked class="requiredmetadata" type="checkbox"  id="'.$temp.'">'. $node["etiqueta"] .' </label>';
                 }else{
                     echo '<label style="float: left; margin-top: 20px; margin-bottom: 20px;" data-noty-options="{"text":"Cambios Guardados Exitosamente ","layout":"topRight","type":"success"}}" class="checkbox-inline"  for="' . $temp . '"><input inside_multiple="1" class="requiredmetadata" type="checkbox"  id="'.$temp.'">'. $node["etiqueta"] .' </label>';
                 }
-
             }
 
         }
@@ -117,6 +121,7 @@ function display_tree($nodes, $indent, $html, $idinput, $existsmul,$superpadre, 
                                     <li><a href="#showmetadata">Metadatos a Mostrar</a></li>
                                     <li><a href="#showhidemetadata">Metadatos Ocultos</a></li>
                                     <li><a href="#requiredmetadata">Metadatos Requeridos</a></li>
+                                    <li><a href="#searchmetadata">Metadatos Busqueda</a></li>
                                     <li><a href="#colections">Colecciones</a></li>
                                     <li><a href="#users">Usuarios</a></li>
                                     <li><a href="#reportedlo">Objetos Reportados</a></li>
@@ -292,6 +297,38 @@ function display_tree($nodes, $indent, $html, $idinput, $existsmul,$superpadre, 
 
                                                     $idinput = str_replace(' ', '', strtolower($suppadres["metadato"])) . "_";
                                                     $form = display_tree(array($tree[$i]), 0, "", $idinput, 0,$idinput, 2);
+
+                                                    ?>
+                                                </div>
+                                                <?php $i++;
+                                                $l++;
+                                            } ?>
+                                            <br>
+                                            <br>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="searchmetadata">
+                                        <div id="tabs4">
+                                            <ul>
+                                                <?php $k=1; foreach($spadres as $key){
+                                                    ?>
+                                                    <li><a href="#tab-<?php echo $k?>" ><?php echo $key["metadato"] ?></a></li>
+                                                    <?php $k++; } ?>
+                                            </ul>
+                                            <?php
+                                            $i=0;
+                                            $l=1;
+                                            foreach($spadres as $suppadres){
+                                                ?>
+                                                <div id="tab-<?php echo $l?>">
+
+
+                                                    <?php
+
+                                                    $idinput = str_replace(' ', '', strtolower($suppadres["metadato"])) . "_";
+                                                    $form = display_tree(array($tree[$i]), 0, "", $idinput, 0,$idinput, 4);
 
                                                     ?>
                                                 </div>

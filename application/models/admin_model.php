@@ -30,6 +30,10 @@ class Admin_model extends CI_Model{
         $this->db->query("update metadatos set show_hide_metadata='".$state."' where id_metadato=$id");
     }
 
+    function change_metadata_searcheable($id, $state){
+        $this->db->query("update metadatos set is_searchable='".$state."' where id_metadato=$id");
+    }
+
     function add_new_subcollection(){
         $data = array(
             "idcollection" => $this->input->post('collection_id'),

@@ -18,6 +18,11 @@ $(function () {
     $("#tabs2").tabs({
         active: 0
     });
+
+    $("#tabs4").tabs();
+    $("#tabs4").tabs({
+        active: 0
+    });
     /**
      * Envio de datos para mostrar datos en el menu
      */
@@ -90,6 +95,33 @@ $(function () {
         sendata["state"] = state;
         $.ajax({
             url: base_url+"index.php/admin/change_required_metadata/",
+            type: "POST",
+            data: sendata
+        }).done(function(){
+            var n = ({
+                text: "Cambios Guardados Completamente",
+                layout: "topRight",
+                type: "information",
+                animateOpen: {"opacity": "show"}
+
+            });
+            noty(n);
+        });
+
+    });
+
+    $(".searchmetadata").change(function (e) {
+        e.preventDefault();
+        var sendata = {};
+        sendata[$("#csrf_name").val()] = $("#csrf_token").val();
+        sendata["id"]= $(this).attr('id');
+        var state = "FALSE";
+        if($(this).is(":checked")){
+            state = "TRUE"
+        }
+        sendata["state"] = state;
+        $.ajax({
+            url: base_url+"index.php/admin/change_searcheable_metadata/",
             type: "POST",
             data: sendata
         }).done(function(){

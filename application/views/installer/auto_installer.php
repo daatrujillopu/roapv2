@@ -116,8 +116,18 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tab4">
-                                        <div class="hot htRemoveRow handsontable htRowHeaders htColumnHeaders" style="width: 100%" id="metadatos_table">
+                                    <div class="col-lg-offset-10">
+                                        <div class="row">
+                                            <button class="btn btn-primary" id="agregar_metadato">Agregar Metadato</button>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="hot htRemoveRow handsontable htRowHeaders htColumnHeaders" style="width: 100%" id="metadatos_table">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <ul class="pager wizard">
@@ -211,8 +221,8 @@
             [27,"Metadata Schema","Esquema Metadatos","tmultiple","","false","false","false",19,"false","false","false","false"],
             [28,"Language","Idioma","vmultiple","Español,English,Português,French,,Russian,Japanese,Latin,Afar,Abkhazian,Afrikaans,Amharic,Arabic,,Assamese,Aymara,Azerbaijani,Bashkir,Byelorussian,Bulgarian,Bihari,,Bislama,Bengali,Bangla,,Tibetan,Breton,Catalan,Corsican,Czech,Welsh,Danish,German,Bhutani,Greek,,Esperanto,Estonian,Basque,Persian,Finnish,Fiji,Faeroese,Frisian,,ga,Irish,Scots,Galician,Guarani,Gujarati,Hausa,,Hindi,Croatian,Hungarian,Armenian,Interlingua,Interlingue,Inupiak,Indonesian,Icelandic,Italian,Hebrew,Yiddish,Javanese,,Georgian,Kazakh,Greenlandic,Cambodian,Kannada,Korean,Kashmiri,Kurdish,Kirghiz,Lingala,Laothian,Lithuanian,Latvian-Lettish,Malagasy,Maori,Macedonian,Malayalam,Mongolian,Moldavian,Marathi,Malay,Maltese,Burmese,Nauru,Nepali,Dutch,Norwegian,Occitan,(Afan)Oromo,Oriya,Punjabi,Polish,Pashto-Pushto,Quechua,Rhaeto-Romance,Kirundi,,Romanian,Kinyarwanda,Sanskrit,Sindhi,Sangro,Serbo-Croatian,Singhalese,Slovak,Slovenian,Samoan,Shona,Somali,Albanian,Serbian,Siswati,Sesotho,Sundanese,Swedish,Swahili,Tamil,Tegulu,Tajik,Thai,Tigrinya,Turkmen,Tagalog,Setswana,Tonga,Turkish,Tsonga,Tatar,Twi,Ukrainian,Urdu,Uzbek,Vietnamese,Volapuk,Wolof,Xhosa,Yoruba,Chinese,Zulu","false","false","false",19,"false","false","false","false"],
             [29,"Technical","Técnica","single","","false","false","false",0,"false","false","false","false"],
-            [30,"Format","Formato","tmultiple","","true","false","false",29,"false","false","false","false"],
-            [31,"Size","Tamaño","text","","true","false","false",29,"false","false","false","false"],
+            [30,"Format","Formato","tmultiple","","true","false","false",29,"false","false","true","false"],
+            [31,"Size","Tamaño","text","","true","false","false",29,"false","false","false","true"],
             [32,"Location","Localización","tmultiple","","false","false","false",29,"true","false","false","false"],
             [33,"Requirement","Requisitos","multiple","","false","false","false",29,"false","false","false","false"],
             [34,"OrComposite","Compuesto","multiple","","false","false","false",33,"false","false","false","false"],
@@ -295,8 +305,8 @@
             [27,"Metadata Schema","Esquema Metadatos","tmultiple","","false","false","false",19,"false","false","false","false"],
             [28,"Language","Idioma","vmultiple","Español,English,Português,French,,Russian,Japanese,Latin,Afar,Abkhazian,Afrikaans,Amharic,Arabic,,Assamese,Aymara,Azerbaijani,Bashkir,Byelorussian,Bulgarian,Bihari,,Bislama,Bengali,Bangla,,Tibetan,Breton,Catalan,Corsican,Czech,Welsh,Danish,German,Bhutani,Greek,,Esperanto,Estonian,Basque,Persian,Finnish,Fiji,Faeroese,Frisian,,ga,Irish,Scots,Galician,Guarani,Gujarati,Hausa,,Hindi,Croatian,Hungarian,Armenian,Interlingua,Interlingue,Inupiak,Indonesian,Icelandic,Italian,Hebrew,Yiddish,Javanese,,Georgian,Kazakh,Greenlandic,Cambodian,Kannada,Korean,Kashmiri,Kurdish,Kirghiz,Lingala,Laothian,Lithuanian,Latvian-Lettish,Malagasy,Maori,Macedonian,Malayalam,Mongolian,Moldavian,Marathi,Malay,Maltese,Burmese,Nauru,Nepali,Dutch,Norwegian,Occitan,(Afan)Oromo,Oriya,Punjabi,Polish,Pashto-Pushto,Quechua,Rhaeto-Romance,Kirundi,,Romanian,Kinyarwanda,Sanskrit,Sindhi,Sangro,Serbo-Croatian,Singhalese,Slovak,Slovenian,Samoan,Shona,Somali,Albanian,Serbian,Siswati,Sesotho,Sundanese,Swedish,Swahili,Tamil,Tegulu,Tajik,Thai,Tigrinya,Turkmen,Tagalog,Setswana,Tonga,Turkish,Tsonga,Tatar,Twi,Ukrainian,Urdu,Uzbek,Vietnamese,Volapuk,Wolof,Xhosa,Yoruba,Chinese,Zulu","false","false","false",19,"false","false","false","false"],
             [29,"Technical","Técnica","single","","false","false","false",0,"false","false","false","false"],
-            [30,"Format","Formato","tmultiple","","true","false","false",29,"false","false","false","false"],
-            [31,"Size","Tamaño","text","","true","false","false",29,"false","false","false","false"],
+            [30,"Format","Formato","tmultiple","","true","false","false",29,"false","false","true","false"],
+            [31,"Size","Tamaño","text","","true","false","false",29,"false","false","false","true"],
             [32,"Location","Localización","tmultiple","","false","false","false",29,"true","false","false","false"],
             [33,"Requirement","Requisitos","multiple","","false","false","false",29,"false","false","false","false"],
             [34,"OrComposite","Compuesto","multiple","","false","false","false",33,"false","false","false","false"],
@@ -347,15 +357,29 @@
         var own = [
             [1,"","","","","false","false","false",0,"false","false","false","false"]];
 
+        function isEmptyRow(instance, row) {
+            var rowData = instance.getData()[row];
+
+            for (var i = 0, ilen = rowData.length; i < ilen; i++) {
+                if (rowData[i] !== null) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         var container = document.getElementById('metadatos_table');
         var hot = new Handsontable(container, {
             data: LOM,
-            minSpareRows: 1,
+            minSpareRows: 0,
             rowHeaders: true,
-            outsideClickDeselects: false,
-            colHeaders: ["No.","Metadata","Etiqueta","Tipo","Valores","Mostrar","Mostrar Oculto","Metadata Requerido","Padre Directo","Es Localización?"],
+            outsideClickDeselects: true,
+            colHeaders: ["No.","Metadata","Etiqueta","Tipo","Valores","Mostrar","Mostrar Oculto","Metadata Requerido","Padre Directo","Es Localización?", "Buscar", "Es Formato?", "Es Tamaño?"],
             contextMenu: true,
-            colWidths: [50, 100, 100, 100, 500, 100, 100, 100, 100, 100],
+            colWidths: [50, 60, 60, 60, 300, 60, 60, 60, 60, 60, 60, 60, 60],
+            stretchH: 'all',
+            rowHeaders: true,
             columns: [
                 {type: 'text'},
                 {type: 'text'},
@@ -382,17 +406,74 @@
                     source: ["true", "false"],
                     strict: true
                 },
+                {type: 'autocomplete',
+                    source: ["true", "false"],
+                    strict: true
+                },
+                {type: 'autocomplete',
+                    source: ["true", "false"],
+                    strict: true
+                },
+                {type: 'autocomplete',
+                    source: ["true", "false"],
+                    strict: true
+                },
             ],
+            afterCreateRow: function(e, t){
+                var itera = e;
+                hot.setDataAtCell(e, 0, e + 1);
+                hot.setDataAtCell(e, 3, "text");
+                hot.setDataAtCell(e, 5, "false");
+                hot.setDataAtCell(e, 6, "false");
+                hot.setDataAtCell(e, 7, "false");
+                hot.setDataAtCell(e, 9, "false");
+                hot.setDataAtCell(e, 10, "false");
+                hot.setDataAtCell(e, 11, "false");
+                hot.setDataAtCell(e, 12, "false");
+
+                setnewdataincell(itera, hot.countRows()-1);
+
+
+            },
         });
+
+        function setnewdataincell(itera, numrows){
+
+            for(itera+1; itera<=numrows; itera++){
+                hot.setDataAtCell(itera, 0, itera+1);
+            }
+        }
+
 
         $( "input[type=radio]" ).on( "click", function() {
 
             if($(this).val()==="LOM"){
                 hot.loadData(LOM);
             }else{
-                hot.loadData(LOMACC);
+                if($(this).val()=="LOMACC"){
+                    hot.loadData(LOMACC);
+                }else{
+                    hot.loadData(own);
+                }
+
             }
         });
+
+       /* hot.
+        $("#agregar_metadato").click(function(e) {
+            hot.alter('insert_row');
+            var last = hot.countRows();
+            ht.alter('insert_row');
+            ht.setDataAtCell(last, 0, last + 1);
+            ht.setDataAtCell(last, 3, "text");
+            ht.setDataAtCell(last, 5, "text");
+            ht.setDataAtCell(last, 6, "text");
+            ht.setDataAtCell(last, 7, "text");
+            ht.setDataAtCell(last, 9, "false");
+            ht.setDataAtCell(last, 10, "false");
+            ht.setDataAtCell(last, 11, "false");
+            ht.setDataAtCell(last, 12, "false");
+        });*/
 
         $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
 

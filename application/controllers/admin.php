@@ -95,6 +95,25 @@ class Admin extends CI_Controller{
         }
     }
 
+    public function change_searcheable_metadata(){
+        $sess = $this->session->userdata('logged_in');
+        if ($sess["role"]==1){
+            $id = $this->input->post("id");
+            $state = $this->input->post("state");
+            $id2 = explode("_", $id);
+
+            $padre = $id2[0];
+            $hijo = $id2[1];
+
+            $parentid = $this->user_model->get_id_father($padre);
+            $idson = $this->user_model->get_id_son($parentid, $hijo);
+            $this->admin_model->change_metadata_searcheable($idson, $state);
+
+        }else{
+            redirect("user", "refresh");
+        }
+    }
+
     public function new_subcollection(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){

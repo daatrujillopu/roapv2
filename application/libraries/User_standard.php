@@ -373,6 +373,9 @@ class User_standard
                 'show_hide_metadata' => $row["show_hide_metadata"],
                 //'order_form' => $row["order_form"],
                 'is_location' => $row["is_location"],
+                'is_searchable' => $row["is_searchable"],
+                'is_format' => $row["is_format"],
+                'is_size' => $row["is_size"],
                 'parent_id' => $row["parentid"]);
             $i++;
         }
