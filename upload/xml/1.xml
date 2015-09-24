@@ -1,0 +1,39 @@
+<lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general><lom:identifier>
+	<lom:catalog>11.3</lom:catalog>
+<lom:entry>14.2</lom:entry>
+</lom:identifier><lom:title>Danny Prueba</lom:title>
+<lom:language>English</lom:language>
+<lom:description>Danny</lom:description>
+<lom:keywords>Danny</lom:keywords>
+<lom:keywords>Trujillo</lom:keywords>
+<lom:covergare></lom:covergare>
+<lom:structure>colección</lom:structure>
+<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general><lom:lifecycle><lom:version></lom:version>
+<lom:status></lom:status>
+<lom:contribure>
+	</lom:contribure></lom:lifecycle><lom:metametadata><lom:identifier>
+	<lom:catalog>11.3</lom:catalog>
+<lom:entry>14.2</lom:entry>
+</lom:identifier><lom:contribute>
+	</lom:contribute><lom:metadataschema></lom:metadataschema>
+<lom:language></lom:language>
+</lom:metametadata><lom:technical><lom:format>xml</lom:format>
+<lom:size>7402kb</lom:size>
+<lom:location>http://localhost/roapv2/upload/1/1.xml</lom:location>
+<lom:requirement>
+	<lom:orcomposite>
+	</lom:orcomposite></lom:requirement><lom:installationremarks></lom:installationremarks>
+<lom:otherplatformsrequirements></lom:otherplatformsrequirements>
+<lom:duration></lom:duration>
+</lom:technical><lom:educational></lom:educational><lom:rights></lom:rights><lom:relation><lom:identifier>
+	<lom:catalog>11.3</lom:catalog>
+<lom:entry>14.2</lom:entry>
+</lom:identifier></lom:relation><lom:annotation></lom:annotation><lom:classification><lom:taxonpath>
+	<lom:taxon>
+	</lom:taxon></lom:taxonpath></lom:classification><lom:accesibility><lom:hassignalternative>0</lom:hassignalternative>
+<lom:hastextalternative>0</lom:hastextalternative>
+<lom:hasauditoryalternative>0</lom:hasauditoryalternative>
+<lom:controlmechanism>0</lom:controlmechanism>
+</lom:accesibility></lom:lom>

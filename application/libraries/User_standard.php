@@ -8,9 +8,10 @@
 
 /**
  * Clase que maneja el estandar dado por el Usuario
- * @Autor Danny Alenxander Trujillo
+ * @Autor Danny Alexander Trujillo
+ * @Category Estandar
  * @Package Libreria
- * @SubPackage Estandar Usuario
+ * @SubPackage Estandar_Usuario
  * Class User_standard
  */
 class User_standard
@@ -36,7 +37,6 @@ class User_standard
      */
     private $hijos;
 
-    private $xmlg;
 
     /**
      * Esta funcion crea el objecto CI de la clase codeigniter e invoca el modelo user_standard_model
@@ -53,6 +53,10 @@ class User_standard
     /**
      * Esta clase consulta el ultimo id guardado de los OA's y entre el mismo sumado 1
      * @return int Se retorna el consecutivo del id del objeto de aprendizaje
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function get_actual_id()
     {
@@ -67,6 +71,10 @@ class User_standard
 
     /**
      * Esta funcion estructura el estandar proporcionado por el usuario identificando los padres que no tienen padres, padres con padres e hijo con padres
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function structure_standard()
     {
@@ -120,6 +128,10 @@ class User_standard
     /**
      * Esta función busca los padre que no tienen mas padres
      * @return mixed Retorna los superpadres del estandar del usuario
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function get_spadres()
     {
@@ -136,6 +148,10 @@ class User_standard
     /**
      * Esta función busca los padre que no tienen mas padres
      * @return mixed Retorna los superpadres del estandar del usuario
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function get_spadre()
     {
@@ -152,6 +168,10 @@ class User_standard
     /**
      * Retorna los padres que tienen hijos y a su vez padres del estandar del usuario
      * @return mixed Array de datos con los padres
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function get_padres()
     {
@@ -165,7 +185,11 @@ class User_standard
 
     /**
      * Retorna array con los hijos del estandar del usuario
-     * @return mixed Retorna
+     * @return mixed Retorna los hijos del estandar
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function get_hijos()
     {
@@ -185,6 +209,10 @@ class User_standard
      * @param $hijo Referencia al hijo inmediato perteneciente a la categoria o metadato al que corresponde el padre
      * @param $oa Consecutivo llave única del padre
      * @param $dato Corresponde al valor del campo tomado del formulario donde se lleno los metadatos del objeto de aprendizaje
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function insert_in_oas($padre, $hijo, $oa, $dato)
     {
@@ -199,6 +227,17 @@ class User_standard
         }
     }
 
+    /**
+     * Metodo que obtiene datos de un metadato deseado por el usuario
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     * @param $padre Referencia el padre inmediato del hijo
+     * @param $hijo Referencia al hijo inmediato perteneciente a la categoria o metadato al que corresponde el padre
+     * @param $oa Consecutivo llave única del padre
+     * @return mixed datos del metadato
+     */
     public function get_data_in_oas($padre, $hijo, $oa){
         return $this->CI->user_model->get_metadato_oa_suppadre($padre, $hijo, $oa);
     }
@@ -211,6 +250,10 @@ class User_standard
      * Función en busca de la si existe el id del OA
      * @param $oa Consecutivo de OA;
      * @return bool Retorna TRUE si existe o FALSE si no existe el objeto de aprendizaje
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
 
     private function exist_oa($oa)
@@ -226,6 +269,10 @@ class User_standard
      * @param $oa Consecutivo llave única del padre
      * @param $dato Corresponde al valor del campo tomado del formulario donde se lleno los metadatos del objeto de aprendizaje
      * @param $orden En los campos multivalorados se tiene en cuenta el orden con que se llenan los metadatos de acuerdo al numero de veces que el usuario disponga
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function insert_in_table($padre, $hijo, $oa, $dato, $orden)
     {
@@ -282,6 +329,10 @@ class User_standard
      * @param $padre Referencia el padre inmediato del hijo
      * @param $oa Consecutivo llave única del padre
      * @param $orden En los campos multivalorados se tiene en cuenta el orden con que se llenan los metadatos de acuerdo al numero de veces que el usuario disponga
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     public function delete_in_table($padre, $oa, $orden)
     {
@@ -310,6 +361,10 @@ class User_standard
      * @param $padre Padre inmediatamente superior al hijo
      * @return mixed Retorna el nombre del padre del padre
      * @Access private
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     private function get_father_father($padre)
     {
@@ -333,6 +388,10 @@ class User_standard
      * @param $orden es el numero de veces que se ha "clonado" el metadato
      * @return bool retorna true si existe o false sino existe
      * @Access private
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     private function exist_row_oas($suppadre, $padre, $oa)
     {
@@ -349,6 +408,10 @@ class User_standard
      * @param $orden es el numero de veces que se ha "clonado" el metadato
      * @return bool retorna true si existe o false sino existe
      * @Access private
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
      */
     private function exist_row_oas_category_multiple($suppadre, $padre, $oa)
     {
@@ -356,6 +419,10 @@ class User_standard
         return $existe;
     }
 
+    /**
+     * Metodo que obtiene el estandar proporcionado por el usuario
+     * @return array con los metadatos del estadar
+     */
     public function get_standard()
     {
         $estandar = $this->CI->user_standard_model->get_user_standard();
@@ -383,7 +450,16 @@ class User_standard
         return $estandartree;
     }
 
-
+    /**
+     * Convierte el estandar en un arbol
+     * @param array $standard array con el estandar del usuario
+     * @param int $parentId identifica el padre mas cercano de un metadato
+     * @return array    retornar un arbol array con el estandar del usuario
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     private function convert_standard_in_tree(array $standard, $parentId = 0)
     {
         $branch = array();
@@ -401,6 +477,27 @@ class User_standard
         return $branch;
     }
 
+    /**
+     * Obtiene el xml generado por el repositorio
+     * @param $id_oa identificador unico del objeto de aprendizaje
+     * @return mixed retornar string con el xml del oa
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
+    public function get_xml($id_oa){
+        return $this->CI->user_model->get_xml($id_oa);
+    }
+
+    /**
+     * Genera el xml apartir del estandar del metadatos, solo funciona con el estandar xml
+     * @param $id_oa identificador unico del oa
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function generate_xml($id_oa)
     {
         $arraystandard = $this->get_standard();
@@ -425,6 +522,20 @@ class User_standard
 
     }
 
+    /**
+     * metodo que reserva el identificador unico dentro del repositorio de un oa
+     * @param $extension extension tipo de archivo que se esta guardando
+     * @param $id_oa dentificador unico del oa
+     * @param $collection  coleccion a la que pertenece el oa
+     * @param $subcollection subcoleccion a la que pertenece el oa si es 0 no pertenece a una subcoleccion
+     * @param $location localizacion dentro del repositorio
+     * @param $size tamano del oa
+     * @param $format formato del oa
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function reserve_id_oa($extension, $id_oa, $collection, $subcollection, $location, $size, $format)
     {
         $metadatolocation = $this->CI->user_model->get_metadato_location();
@@ -450,6 +561,15 @@ class User_standard
 
     }
 
+    /**
+     * Actualiza la colecciona la cual pertenece el oa
+     * @param $id_oa identificador unico del oa
+     * @param $collection colecciona la que pertenece el oa
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function update_reserve_id_oa_collection($id_oa, $collection){
         $this->CI->user_model->update_collection($id_oa, $collection);
     }
@@ -460,6 +580,20 @@ class User_standard
 
     }
 
+    /**
+     * Metodo para crear le xml de un oa
+     * @param $xml xml del oa
+     * @param $category categorias del repositorio del estandar proporcionado por el usuario
+     * @param $padre padre del hijo del estanadar
+     * @param $elements metadatos del estandar del usuario
+     * @param $indent
+     * @param $id_oa identificador unico del oa
+     * @param $ismultiple en caso de que le metadato sea multiple
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     private function create_xml($xml, $category, $padre, $elements, $indent, $id_oa, $ismultiple)
     {
         if ($indent >= 20) return;    // Stop at 20 sub levels
@@ -626,7 +760,16 @@ class User_standard
     }
 
 
-
+    /**
+     * @param string $collection identicador de la coleccion
+     * @param string $subcollection identificador de la subcoleccion
+     * @param string $search keywords de busqueda
+     * @return array con objetos de aprendizaje
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_metadata_to_show($collection= "0", $subcollection = "0", $search = "0")
     {
 
@@ -711,6 +854,14 @@ class User_standard
         return $returnmetadata;
     }
 
+    /**
+     * Obtiene los metadatos que se muestran ocultamente
+     * @return array retornar los metadatos a hacer mostrados ocultamente
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_show_hide_metadata(){
         $metadatashow = $this->CI->user_model->get_show_hide_metadata();
         //print_r($metadatashow);
@@ -772,10 +923,27 @@ class User_standard
         return $returnmetadata;
     }
 
+    /**
+     * Metodo para obtener informacion de quien subio el metadato
+     * @return mixed retorna los usuario registrados de los usuarios y los id de los oa que subieron
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_own_users_oas(){
         return $this->CI->user_model->get_users_upload_oas();
     }
 
+    /**
+     * Metodo que obtiene los objetos de aprendizaje basados en la busqueda de los usuarios
+     * @param $words palabras clave proporcionados por el usuario
+     * @return array
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_oas_search($words){
         $metadatasearcheable= $this->CI->user_model->get_searcheable_metadata();
         $oas = $this->CI->user_model->get_existing_oas();
@@ -842,6 +1010,16 @@ class User_standard
 
     }
 
+    /**
+     * Metodo que elimina objetos de aprendizaje duplicados dentro de una busqueda
+     * @param $array array que contiene los objetos de aprendizaje
+     * @param $key key de un array identificador para hacer la eliminacion de oas duplicados
+     * @return array array con los obejtos de aprendizaje no duplicados
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     function unique_multidim_array($array, $key){
         $temp_array = array();
         $i = 0;
@@ -857,6 +1035,14 @@ class User_standard
         return $temp_array;
     }
 
+    /**
+     * Metodo para obtener el metadato que tiene la informacion de la localizacion del oa
+     * @return string retorna el metadato de localizacion
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_metadata_location(){
         $metadatolocation = $this->CI->user_model->get_metadato_location();
         if ($metadatolocation[0]["tipo"] != "multiple") {
@@ -866,6 +1052,14 @@ class User_standard
         }
     }
 
+    /**
+     * Metodo para obtener el metadato que tiene la informacion del tamano del oa
+     * @return string retorna el metadato de tamano
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_metadata_size(){
         $metadatosize = $this->CI->user_model->get_metadato_size();
         if ($metadatosize[0]["tipo"] != "multiple") {
@@ -874,6 +1068,15 @@ class User_standard
             return $father."_".str_replace(" ", "", strtolower($metadatosize[0]["metadato"]));
         }
     }
+
+    /**
+     * Metodo para obtener el metadato que tiene el formato del oa
+     * @return string retorna el metadato de formato
+     * @Category Estandar
+     * @Autor Danny Alexander Trujillo
+     * @Package Libreria
+     * @SubPackage Estandar_Usuario
+     */
     public function get_metadata_format(){
         $metadatoformat = $this->CI->user_model->get_metadato_format();
         if ($metadatoformat[0]["tipo"] != "multiple") {

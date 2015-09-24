@@ -1,4 +1,4 @@
-
+<script src="<?=base_url()?>assets/js/jquery.filedownload.js"></script>
 <div class="container" style="width: 100%">
     <div class="row">
         <div class="box col-md-12">
@@ -74,10 +74,14 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="control-label"><strong>Opciones:</strong></label>
-                                                <a href="<?= base_url() ?>main/download_oa/<?=$key["id_oa"]?>"
+                                                <a target="_blank" href="<?= base_url() ?>main/view_oa/<?=$key["id_oa"]?>"
                                                    class="btn btn-xs btn-round blue btn-default"><i
+                                                        class="glyphicon glyphicon-eye-open"></i></a>
+
+                                                <a target="_blank" href="<?=$key["id_oa"]?>" download
+                                                   data-oa="<?=$key["id_oa"]?>" class="btn btn-xs btn-round blue btn-default downloadoa"><i
                                                         class="glyphicon glyphicon-arrow-down"></i></a>
-                                                <a href="<?= base_url() ?>main/get_xml_oa/<?=$key["id_oa"]?>"
+                                                <a target="_blank" href="<?= base_url() ?>main/get_xml_oa/<?=$key["id_oa"]?>" download
                                                    class="btn btn-xs btn-round blue btn-default"><i
                                                         class="glyphicon glyphicon-book"></i></a>
                                                 <?php if (isset($user_logged)) {
@@ -158,6 +162,38 @@
             $("#first_metadata").show();
             $("#search_oas").hide();
         }
+    });
+
+    function get_url(oa){
+
+        var sendata = {};
+        var enlace1;
+        sendata[$("#csrf_name").val()] = $("#csrf_token").val();
+        sendata["id_oa"]= oa;
+        var url = $.ajax({
+            url: "<?=base_url()?>index.php/main/download_oa/",
+            data: sendata,
+            type: "POST",
+            async: false,
+            datatype: "JSON"
+        }).responseText;
+
+        var answer = $.parseJSON(url);
+        if(answer.hasOwnProperty("data")){
+            $.each(answer.data, function (i, datos) {
+                var enlace = datos.url.toString();
+                enlace1 = enlace.replace(/\\"/g,"");
+            });
+        }
+
+        return enlace1;
+    }
+    $(function () {
+        $(".downloadoa").each(function () {
+            var oa = $(this).attr('href');
+            var url = get_url(oa);
+            $(this).attr('href',url);
+        })
     })
 
 </script>

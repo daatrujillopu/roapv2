@@ -7,12 +7,29 @@
  */
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class Installer
+ * Clase que apoya el proceso de instalacion de una instacia de ROAP
+ * @Access Public
+ * @Autor Danny Alexander Trujillo Pulgarin
+ * @Category Usuarios_No_Registrados
+ * @Package Controladores
+ * @Subpackage Controladores/installer
+ */
 class Installer extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model("installer_model");
     }
 
+    /**
+     * Metodo que se encarga de brindar proceso paso a paso de la instalacion de ROAP
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/installer
+     */
     public function index(){
 
         if(!$this->installerhasexecute(true)){
@@ -31,10 +48,23 @@ class Installer extends CI_Controller{
 
     }
 
+    /**
+     * Metodo que crea la tabla usuarios
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/installer
+     */
     public function create_user_table(){
         $this->installer_model->create_table_user();
     }
 
+    /**
+     * Crea la tabla metadatos guardando el estandar de metadatos proporcionados por el usuario
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     */
     public function create_big_table(){
         $datametadata = $this->input->post("datametadata");
         $datametadata = json_decode($datametadata);
@@ -192,6 +222,16 @@ class Installer extends CI_Controller{
 
     }
 
+    /**
+     * Metodo que cambia el estado actual de la instalacion del repositorio
+     * @param $read Dato que proporciona el tipo de cambio que se debe hacer true 1 instalacion ya realizada false aun no realizada
+     * @return bool retorna boolean en caso de que el proceso haya acabado con exito
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/installer
+     */
     private function installerhasexecute($read){
         if($read){
             $fp = fopen("upload/installercontrol/installer.txt", "r");

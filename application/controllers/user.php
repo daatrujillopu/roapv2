@@ -11,7 +11,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  * Esta clase se encarga de generar formularios automaticos a partir de
  * @Access public
  * @Autor Danny Alexander Trujillo Pulgarin
- * @Category Usuarios_No_Registrados
+ * @Category Usuarios_Registrados
  * @Package Controladores
  * @Subpackage Controladores/Usuario
  * Class User
@@ -22,9 +22,13 @@ class User extends CI_Controller{
      * @var User_standard Variable que tiene la estructura del estandar proporcionado por el usuario
      */
     private $standard;
-
+    /**
+     * @var Id actual del objeto de aprendizaje
+     */
     private $actualoa_id;
-
+    /**
+     * @var Collection_subcollection_helper Ayudador de colecciones y subcolecciones
+     */
     private $collection_sub_helper;
 
     /**
@@ -44,6 +48,9 @@ class User extends CI_Controller{
      * de aprendizaje
      * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/Usuario
      */
 
     public function index(){
@@ -70,6 +77,11 @@ class User extends CI_Controller{
      * Esta clase se encarga de mostrar la vista donde se carga el formulario dinamico
      * apartir del estandar proporcionado por el usuario
      * @param $id_oa Consecutivo del id del objeto de aprendizaje
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/Usuario
      */
 
 
@@ -128,8 +140,9 @@ class User extends CI_Controller{
     //funciones para insertar datos
     /**
      * Funcion se encarga de guardar los datos de cada categoria del estandar brindado por el usuario
-     * @Access public
-     * @Category Usuarios_No_Registrados
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
      * @Package Controladores
      * @Subpackage Controladores/Usuario
      */
@@ -168,8 +181,9 @@ class User extends CI_Controller{
 
     /**
      * Funcion se encarga de borrar los metadatos de cada categoria del estandar brindado por el usuario
-     * @Access public
-     * @Category Usuarios_No_Registrados
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
      * @Package Controladores
      * @Subpackage Controladores/Usuario
      */
@@ -190,8 +204,9 @@ class User extends CI_Controller{
 
     /**
      * Esta función se encarga de subir archivos mediante el metodo ajax solo para un archivo
-     * @Access public
-     * @Category Usuarios_No_Registrados
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
      * @Package Controladores
      * @Subpackage Controladores/Usuario
      */
@@ -250,8 +265,9 @@ class User extends CI_Controller{
     }
 
     /**
-     * @Access public
-     * @Category Usuarios_No_Registrados
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
      * @Package Controladores
      * @Subpackage Controladores/Usuario
      * @return int Retorna el id consecutivo del oa, en caso de que haya cambiado cambiar el id
@@ -269,6 +285,13 @@ class User extends CI_Controller{
 
     }
 
+    /**
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/Usuario
+     */
     public function oaipmh(){
         $cosa = array(
             "verb" => "ListRecords",

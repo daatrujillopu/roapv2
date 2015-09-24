@@ -7,6 +7,14 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  * Time: 03:17 PM
  */
 
+/**
+ * Class Session Clase para le manejo de sessiones y login de usuarios
+ * @Access Public
+ * @Autor Danny Alexander Trujillo Pulgarin
+ * @Category Usuarios_No_Registrados
+ * @Package Controladores
+ * @Subpackage Controladores/session
+ */
 class Session extends CI_Controller{
 
     function __construct()
@@ -15,6 +23,14 @@ class Session extends CI_Controller{
         $this->load->model('session_model','',TRUE);
     }
 
+    /**
+     * Metodo que corrobora que los datos ingresados en el formulario de ingreso sean correctos
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/session
+     */
     function index(){
 
         //This method will have the credentials validation and select the rle an redirect for users
@@ -41,6 +57,16 @@ class Session extends CI_Controller{
         }
     }
 
+    /**
+     * Metodo que consulta en base de datos que los datos proporcionados por el usuario sean correctos
+     * @param $password Contrasena otorgada por el usuario
+     * @return bool en caso de ser exitoso los datos proporcionado retorna true en caso contrario false
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/session
+     */
     function check_database($password)
     {
         //Field validation succeeded.  Validate against database
@@ -71,6 +97,14 @@ class Session extends CI_Controller{
         }
     }
 
+    /**
+     * Destruir sessiones de usuarios
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/session
+     */
     public function logout(){
         $this->session->unset_userdata('logged_in');
         $this->session->sess_destroy();

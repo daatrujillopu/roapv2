@@ -5,12 +5,24 @@
  * Date: 19/07/15
  * Time: 03:46 PM
  */
+
+/**
+ * Class Main
+ * Clase de llegada de usuarios del repositorio mostrando por default todos los objetos de aprendizaje
+ * @Access Public
+ * @Autor Danny Alexander Trujillo Pulgarin
+ * @Category Usuarios_No_Registrados
+ * @Package Controladores
+ * @Subpackage Controladores/main
+ */
 class Main extends CI_Controller{
     /**
      * @var User_standard Variable que tiene la estructura del estandar proporcionado por el usuario
      */
     private $standard;
-
+    /**
+     * @var Collection_subcollection_helper Ayudante para agilizar el proceso de consulta de colecciones y subcolecciones
+     */
     private $collection_sub_helper;
 /**
  * Constructor
@@ -27,6 +39,14 @@ class Main extends CI_Controller{
         $this->collection_sub_helper = new Collection_subcollection_helper();
     }
 
+    /**
+     * Metodo donde se muestra la vista de todos los objetos de aprendizaje presentes en el repositorio
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
     public function index(){
         if($this->session->userdata('logged_in')){
             $arr = $this->session->userdata('logged_in');
@@ -66,6 +86,15 @@ class Main extends CI_Controller{
         $this->load->view("layouts/main_template", $content);
     }
 
+    /**
+     * Metodo que filtra objetos de aprendizaje por coleccion
+     * @param $id_collection id de la coleccion
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
     public function oas_objects_per_collection($id_collection)
     {
         if($this->session->userdata('logged_in')){
@@ -107,6 +136,17 @@ class Main extends CI_Controller{
 
         $this->load->view("layouts/main_template", $content);
     }
+
+    /**
+     * Metodo que filtra objetos de Aprendizaje por coleccion y su respectiva subcoleccion
+     * @param $id_collection
+     * @param $id_subcollection
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
     public function oas_objects_per_subcollection($id_collection, $id_subcollection)
     {
         if($this->session->userdata('logged_in')){
@@ -151,10 +191,28 @@ class Main extends CI_Controller{
         $this->load->view("layouts/main_template", $content);
     }
 
+    /**
+     * Metodo para implementar paginacion
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @param $words keywords otorgados por el usuario
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
     public function show_pagination_oas(){
 
     }
 
+    /**
+     * Metodo para buscar objetos de aprendizaje
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @param $words keywords otorgados por el usuario
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
     public function search_oas($words){
         $stop_words = array("un","una","unas","unos","uno","sobre","todo","también","tras","otro","algún","alguno","alguna","algunos","algunas","ser","es","soy","eres","somos","sois","estoy","esta","estamos","estais","estan","como","en","para","atras","porque","porqué","estado","estaba","ante","antes","siendo","ambos","pero","por","poder","puede","puedo","podemos","podeis","pueden","fui","fue","fuimos","fueron","hacer","hago","hace","hacemos","haceis","hacen","cada","fin","incluso","primero","desde","conseguir","consigo","consigue","consigues","conseguimos","consiguen","ir","voy","va","vamos","vais","van","vaya","gueno","ha","tener","tengo","tiene","tenemos","teneis","tienen","el","la","lo","las","los","su","aqui","mio","tuyo","ellos","ellas","nos","nosotros","vosotros","vosotras","si","dentro","solo","solamente","saber","sabes","sabe","sabemos","sabeis","saben","ultimo","largo","bastante","haces","muchos","aquellos","aquellas","sus","entonces","tiempo","verdad","verdadero","verdadera","cierto","ciertos","cierta","ciertas","intentar","intento","intenta","intentas","intentamos","intentais","intentan","dos","bajo","arriba","encima","usar","uso","usas","usa","usamos","usais","usan","emplear","empleo","empleas","emplean","ampleamos","empleais","valor","muy","era","eras","eramos","eran","modo","bien","cual","cuando","donde","mientras","quien","con","entre","sin","trabajo","trabajar","trabajas","trabaja","trabajamos","trabajais","trabajan","podria","podrias","podriamos","podrian","podriais","yo","aquel");
         $words1 = str_replace($stop_words, "", strtolower(trim($words)));
@@ -185,6 +243,131 @@ class Main extends CI_Controller{
         }
 
         $this->load->view("main/main_search", $content);
+    }
+
+    /**
+     * Metodo para visualizar un objeto de aprendizaje
+     * @param $id_oa id del objeto de aprendizaje
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
+    public function view_oa($id_oa){
+        $location = $this->standard->get_metadata_location();
+        $location2 = explode("_",$location);
+        $padre = $location2[0];
+        $hijo = $location2[1];
+        $locationdato = $this->standard->get_data_in_oas($padre, $hijo, $id_oa);
+        redirect("".$locationdato[0][$padre."_".$hijo], "refresh");
+    }
+
+    /**
+     * Metodo para descargar un objeto de aprendizaje
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
+    public function download_oa(){
+        $id_oa = $this->input->post("id_oa");
+        $location = $this->standard->get_metadata_location();
+        $location2 = explode("_",$location);
+        $padre = $location2[0];
+        $hijo = $location2[1];
+        $locationdato = $this->standard->get_data_in_oas($padre, $hijo, $id_oa);
+        $archive_name = $locationdato[0][$padre."_".$hijo];
+        $name_archive = end(explode("/", $archive_name));
+        $name_archive = explode(".",$name_archive);
+        $name = $name_archive[0];
+        $format = end($name_archive);
+        $enlace = "upload/".$name."/".$name.".".$format;
+
+        $datajson = array();
+        $datajson["data"][] = array(
+            "name" => $name,
+            "format" => $format,
+            "url" => $enlace
+        );
+
+        echo json_encode($datajson);
+
+    }
+
+    /**
+     * Metodo para descargar el xml generado del objeto de aprendizaje
+     * @param $id_oa id del objeto de aprendizaje
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
+    public function get_xml_oa($id_oa){
+
+        $buffer = $this->standard->get_xml($id_oa);
+        $title = $id_oa;
+        $filePath="upload/xml/".$title . ".xml";
+        $dir = fopen($filePath,"w+");
+        fwrite($dir, $buffer);
+        fclose($dir);
+
+        header("location:".base_url().$filePath);
+       /* unlink($filePath);
+        header("Content-Type: application/xml");
+        header("Content-Disposition: attachment; filename=".basename($filePath).";");
+        echo $buffer;
+        $file = file($filePath);
+        unlink($filePath);
+        //$buffer = $c->getXML($idlo);
+        $filename = $title . ".xml";
+        $filepath = $filePath;
+        $filesize = real_filesize($filepath);
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/force-download');
+        header('Content-Type: application/octet-stream');
+        header("Content-Type: application/download");
+        header("Content-Disposition: attachment; filename=".basename($filename).";");
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . $filesize);
+        ob_clean();
+        flush();
+        readfile($filepath);
+        exit();*/
+
+    }
+
+    /**
+     * Funcion para consultar el tamano real del archivo
+     * @param $file archivo
+     * @return float retorna el tamano real del archivo
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/main
+     */
+    private function real_filesize($file) {
+
+        $fmod = filesize($file);
+        if ($fmod < 0) $fmod += 2.0 * (PHP_INT_MAX + 1);
+        $i = 0;
+        $myfile = fopen($file, "r");
+        while (strlen(fread($myfile, 1)) === 1) {
+            fseek($myfile, PHP_INT_MAX, SEEK_CUR);
+            $i++;
+        }
+        fclose($myfile);
+        if ($i % 2 == 1) $i--;
+
+        return ((float)($i) * (PHP_INT_MAX + 1)) + $fmod;
+
     }
 
 }

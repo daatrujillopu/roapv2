@@ -315,6 +315,15 @@ class User_model extends CI_Model{
     }
 //*********************************Consultas a la bd*************************************
 
+    public function get_xml($id_oa){
+        $this->db->select("xmlo");
+        $this->db->from("lo");
+        $this->db->where("idlo", $id_oa);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0]["xmlo"];
+    }
+
     public function get_existing_oas($filterco = "0", $filtersub = "0"){
         $this->db->select("id_oa");
         $this->db->from("oas");

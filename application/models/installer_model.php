@@ -5,12 +5,29 @@
  * Date: 28/05/15
  * Time: 05:19 PM
  */
-class Installer_model extends CI_Model{
 
+/**
+ * Class Installer_model
+ * Clase que maneja metodos de insercion apoyando el proceso de instalacion de ROAP
+ * @Access Public
+ * @Autor Danny Alexander Trujillo Pulgarin
+ */
+class Installer_model extends CI_Model{
+    /**
+     * Constructor para cargar librerias.
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     */
     public function __construct(){
         parent::__construct();
     }
 
+    /**
+     * Metodo para obtener todos los metadatos de la tabla metadatos
+     * @return mixed retorna un array con toda la informacion consignada en la tabla metadatos
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     */
     public function get_metadatos_table(){
         $this->db->select("*");
         $this->db->from("metadatos");
@@ -19,11 +36,22 @@ class Installer_model extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Metodo para ejecutar consultas sql
+     * @param $sql string con la consulta sql
+     * Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     */
     public function execute_query($sql){
         $query = $this->db->query($sql);
         echo $this->db->last_query();
     }
 
+    /**
+     * metodo que crea la tabla usuarios, que brinda sorporte para loggin de nuevos usuarios
+     * Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     */
     public function create_table_user(){
         $sql = "create table if not exists users(
                   iduser serial NOT NULL,

@@ -6,6 +6,15 @@
  * Time: 05:34 PM
  */
 
+/**
+ * Class Oai
+ * Clase que maneja el estandar OAIPMH para el cosechado de repositorios
+ * @Access Public
+ * @Autor Danny Alexander Trujillo Pulgarin
+ * @Category Usuarios_No_Registrados
+ * @Package Controladores
+ * @Subpackage Controladores/oai
+ */
 class Oai extends CI_Controller{
 
     function __construct(){
@@ -13,6 +22,14 @@ class Oai extends CI_Controller{
         $this->load->library("OAIPMH");
     }
 
+    /**
+     * Metodo que se encarga de generar el xml de cosechado
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/oai
+     */
     public function index(){
         $urlget = $_GET;
 

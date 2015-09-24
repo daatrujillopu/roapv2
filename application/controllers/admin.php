@@ -7,10 +7,24 @@
  */
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Clase para el administrador del repositorio
+ * Class Admin
+ * @Access Private
+ * @Autor Danny Alexander Trujillo Pulgarin
+ * @Category Usuario Administrador
+ * @Package Controladores
+ * @Subpackage Controladores/Administrador
+ */
 class Admin extends CI_Controller{
-
+    /**
+     * @var User_standard Estandar proporcionado por el usuario, este se transforma en arbol de acuerdo a lo contenido en la tabla metadatos
+     */
     private $standard;
 
+    /**
+     * Constructor de la clase para cargar clases, modelos y librerias necesarias
+     */
     public function __construct(){
         parent::__construct();
         $this->load->library("User_standard");
@@ -20,6 +34,14 @@ class Admin extends CI_Controller{
         $this->standard = new User_standard();
     }
 
+    /**
+     * Metodo default por el cual el framework ingresa en caso de no haber prametros que indiquen una funcion en especifico
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function index(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -41,6 +63,14 @@ class Admin extends CI_Controller{
         }
     }
 
+    /**
+     * Metodo para cambiar los metatados a ser mostrados por el usuario
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function change_show_metadata(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -58,6 +88,14 @@ class Admin extends CI_Controller{
 
     }
 
+    /**
+     * Metodo para cambiar metadato que es requerido en el llenado de formulario
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function change_required_metadata(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -76,6 +114,15 @@ class Admin extends CI_Controller{
             redirect("user", "refresh");
         }
     }
+
+    /**
+     * Metodo para cambiar los metadatos que se muestran pero estan ocultos al usuario (Ver Mas)
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function change_show_hide_metadata(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -95,6 +142,14 @@ class Admin extends CI_Controller{
         }
     }
 
+    /**
+     * Metodo para cambiar aquellos metadatos en los que se debe hacer la busqueda
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function change_searcheable_metadata(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -114,6 +169,14 @@ class Admin extends CI_Controller{
         }
     }
 
+    /**
+     * Metodo para agregar una nueva subcoleccion
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function new_subcollection(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -123,6 +186,14 @@ class Admin extends CI_Controller{
         }
     }
 
+    /**
+     * Metodo para eliminar una subcoleccion
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function delete_subcollection(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){
@@ -132,6 +203,14 @@ class Admin extends CI_Controller{
         }
     }
 
+    /**
+     * Metodo para cambiar una nueva coleccion
+     * @Access Private
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuario Administrador
+     * @Package Controladores
+     * @Subpackage Controladores/Administrador
+     */
     public function add_new_collection(){
         $sess = $this->session->userdata('logged_in');
         if ($sess["role"]==1){

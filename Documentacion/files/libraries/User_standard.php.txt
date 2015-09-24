@@ -5,7 +5,7 @@
 /**
  * Clase que maneja el estandar dado por el Usuario
  *
- * @Autor Danny Alenxander Trujillo
+ * @Autor Danny Alexander Trujillo
  * @Package Libreria
  * @SubPackage Estandar Usuario
  */
