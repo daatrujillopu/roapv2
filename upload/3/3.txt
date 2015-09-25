@@ -1,4 +1,0 @@
-oliverm@officegraphicdesign.com, chris@gokapital.com, danny.trujillo.p@gmail.com
-
-
-on_sent_ok: "var loanmount = jQuery('#loanamount').val(); var monthlysales = jQuery('#monthlysales').val(); var nameclient = jQuery('#name').val(); var lastnameclient = jQuery('#last_name').val(); var phone = jQuery('#phone').val(); var email = jQuery('#email').val(); var company = jQuery('#company').val(); location = 'http://localhost/gk_platform/?name='+nameclient+'&last_name='+lastnameclient+'&email='+email+'&phone='+phone+'&amount='+loanmount+'&creditscore=&avermonth=&timebusi=&companyname='+company+'&formurl=directbusiness';"
