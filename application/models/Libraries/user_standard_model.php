@@ -1,21 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 15/02/15
- * Time: 04:51 PM
- */
-
-/**
  * Esta clase contiene los metodos de insercion actualizacion y borrado de metadatos pertenecientes
  * al estandar proporcionado por el usuario
  * Class User_standard_model
+ * @Autor Danny Alexander Trujillo
+ * @Category Modelo
+ * @Package Model
+ * @SubPackage user_standard_model
  *
  */
 class User_standard_model extends CI_Model{
     /**
      * Funcíon que busca y retorna la estructura el estandar de metadatos propocionado por el usuario
      * @return mixed Se retorna un array con los metadatos proporcionados por el usuario
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_standard_model
      */
     public function get_user_standard(){
         $this->db->select("*");
@@ -27,7 +28,11 @@ class User_standard_model extends CI_Model{
 
     /**
      * Retorna el consecutivo inmediatamente siguiente al ultimo id del oa que se tiene
-     * @return int
+     * @return int o array de acuerdo ha si existe o no un oa
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_standard_model
      */
     public function get_last_row(){
         $this->db->select("id_oa");

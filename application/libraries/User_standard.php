@@ -1,12 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 22/02/15
- * Time: 06:22 PM
- */
-
-/**
  * Clase que maneja el estandar dado por el Usuario
  * @Autor Danny Alexander Trujillo
  * @Category Estandar

@@ -1,12 +1,4 @@
 <?php
-
-/**
- * Created by PhpStorm.
- * User: danny
- * Date: 28/08/15
- * Time: 04:45 PM
- */
-
 /**
  * Class Collection_subcollection_helper
  * Clase ayudadora para obtener informacion acerca de las colecciones y subcolecciones en el repositorio
@@ -19,10 +11,12 @@
 class Collection_subcollection_helper
 {
     /**
+     * Objeto Coleccion
      * @var Coleccion
      */
     private $collection;
     /**
+     * Objeto subcoleccion
      * @var subcolecion
      */
     private $subcollection;

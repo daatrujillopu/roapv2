@@ -1,11 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: danny
- * Date: 29/06/15
- * Time: 04:18 PM
- */
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Clase para el administrador del repositorio

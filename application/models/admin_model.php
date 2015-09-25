@@ -1,15 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 12/07/15
- * Time: 12:14 PM
- */
-
-/**
  * Class Admin_model
  * @Access Private
- * @Autor Danny Alexander Trujillo Pulgarin
+ * @Autor Danny Alexander Trujillo
+ * @Category Modelo
+ * @Package Model
+ * @SubPackage admin_model
  */
 
 class Admin_model extends CI_Model{
@@ -17,7 +13,10 @@ class Admin_model extends CI_Model{
      * Metodo obtener todas las colecciones
      * @return mixed retorna array con todas la colecciones existentes en el repositorio
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function get_collections_list(){
         $query = $this->db->get("collection");
@@ -28,7 +27,10 @@ class Admin_model extends CI_Model{
      * Metodo para obtener todas las subcolecciones presentes en el repositorio
      * @return mixed Retorna array con las subcolecciones del repositorio
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function get_subcollections_list(){
         $query = $this->db->get("subcollection");
@@ -39,8 +41,11 @@ class Admin_model extends CI_Model{
      * Metodo para cambiar el estado del metadato a mostrar
      * @param $id id referenciado desde la tabla metadato
      * @param $state true/false, estado en que se quiere cambiar el metadato true para mostrar false para no mostrar
-     * * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Access Private
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function change_metadata_to_show($id, $state){
         $this->db->query("update metadatos set mostrar='".$state."' where id_metadato=$id");
@@ -51,7 +56,10 @@ class Admin_model extends CI_Model{
      * @param $id id referenciado desde la tabla metadato
      * @param $state true/false, estado en que se quiere cambiar el metadato true para mostrar false para no mostrar
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function change_metadata_required($id, $state){
         $this->db->query("update metadatos set required_metadata='".$state."' where id_metadato=$id");
@@ -62,7 +70,10 @@ class Admin_model extends CI_Model{
      * @param $id id referenciado desde la tabla metadato
      * @param $state true/false, estado en que se quiere cambiar el metadato true para mostrar false para no mostrar
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function change_metadata_show_hide($id, $state){
         $this->db->query("update metadatos set show_hide_metadata='".$state."' where id_metadato=$id");
@@ -73,7 +84,10 @@ class Admin_model extends CI_Model{
      * @param $id id referenciado desde la tabla metadato
      * @param $state true/false, estado en que se quiere cambiar el metadato true para mostrar false para no mostrar
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function change_metadata_searcheable($id, $state){
         $this->db->query("update metadatos set is_searchable='".$state."' where id_metadato=$id");
@@ -82,7 +96,10 @@ class Admin_model extends CI_Model{
     /**
      * Metodo para agregar una nueva coleccion
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function add_new_subcollection(){
         $data = array(
@@ -95,7 +112,10 @@ class Admin_model extends CI_Model{
     /**
      * Metodo para eliminar una subcoleccion
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function delete_subcollection(){
         $this->db->where("idsubcollection", $this->input->post("subcollection_id"));
@@ -105,7 +125,10 @@ class Admin_model extends CI_Model{
     /**
      * Metodo para agregar una nueva coleccion
      * @Access Private
-     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage admin_model
      */
     function new_collection(){
         $data = array(

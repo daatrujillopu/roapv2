@@ -1,18 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 22/02/15
- * Time: 06:22 PM
- */
-
-/**
- * Clase que contiene las funcionalidades de una usuario no registrado
- *
+ * Clase que maneja todo el repositorio, estandar.
  * Class User_model
+ * @Access Public/Private
+ * @Autor Danny Alexander Trujillo Pulgarin
+ * @Category Modelo
+ * @Package Model
+ * @SubPackage user_model
  */
 class User_model extends CI_Model{
-
+    /**
+     * Funcion que crea un nuevo usuario en el repositorio
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     function new_user(){
 
         $data = array(
@@ -29,6 +32,14 @@ class User_model extends CI_Model{
         $this->db->insert("users", $data);
     }
 
+    /**
+     * Funcion que chequea si el username existe
+     * @return string retorna false o true en caso de que no exista o exista el username
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     function check_user_name(){
         $this->db->select("email");
         $this->db->from("users");
@@ -41,11 +52,26 @@ class User_model extends CI_Model{
         }
     }
 
+    /**
+     * Reserva el id consecutivo para un nuevo oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function reserve_id_oa(){
         $data = array("general_title" =>'');
         $this->db->insert("oas", $data);
     }
 
+    /**
+     * Funcion que se encarga de busca el metadato destinado para la localizacion
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     * @return mixed retorna array con el string del metadato
+     */
     public function get_metadato_location(){
         $this->db->select("*");
         $this->db->from("metadatos");
@@ -54,6 +80,14 @@ class User_model extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Funcion que se encarga de busca el metadato destinado para formato de un OA
+     * @return mixed
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_metadato_format(){
         $this->db->select("*");
         $this->db->from("metadatos");
@@ -62,6 +96,14 @@ class User_model extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Funcion que se encarga de busca el metadato destinado para tamano de un OA
+     * @return mixed
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_metadato_size(){
         $this->db->select("*");
         $this->db->from("metadatos");
@@ -73,6 +115,10 @@ class User_model extends CI_Model{
      * Se revisa que exista al menos una fila en la tabla
      * @param $oa
      * @return bool
+      * @Autor Danny Alexander Trujillo Pulgarin
+      * @Category Modelo
+      * @Package Model
+      * @SubPackage user_model
      */
     public function exists_insert_oa($oa){
         $this->db->select("*");
@@ -90,12 +136,15 @@ class User_model extends CI_Model{
 
     /**
      * En caso de no existir fila con el consecutivo del oa se insertara los datos
-     *
      * @param $padre Padre que tiene como padre a $supfather
      * @param $hijo Metadato hoja
-     * @param $dato dato referenciado     *
+     * @param $oa id oa
+     * @param $dato dato referenciado
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
-
     public function insert_metadato_oa_suppadre($padre, $hijo,$dato, $oa){
         $data = array(
             "id_oa" => $oa,
@@ -110,6 +159,10 @@ class User_model extends CI_Model{
      * @param $hijo Metadato hoja
      * @param $dato dato referenciado
      * @param $oa Consecutivo e identifcador del OA
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
     public function update_metadato_oa_suppadre($padre, $hijo,$dato, $oa){
         $data = array(
@@ -119,6 +172,17 @@ class User_model extends CI_Model{
         $this->db->update("oas", $data);
     }
 
+    /**
+     * Obtener el dato del metadato de un super padre padre del padre
+     * @param $padre padre inmediato de un metadato
+     * @param $hijo metadato
+     * @param $oa id del oa
+     * @return mixed retorna el valor de metadato a buscar
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_metadato_oa_suppadre($padre, $hijo, $oa){
         $this->db->select("".$padre."_".$hijo);
         $this->db->from("oas");
@@ -131,6 +195,10 @@ class User_model extends CI_Model{
      * Funcion que obtiene el parent id del padre
      * @param $padre Padre que tiene como padre a $supfather
      * @return mixed Se devuelve el valor del parentid del padre;
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
     public function get_parentid($padre){
         $query = $this->db->query("select parentid from metadatos where lower(replace(metadato, ' ', ''))='".$padre."'");
@@ -144,6 +212,15 @@ class User_model extends CI_Model{
 
     }
 
+    /**
+     * Funcion para obtener el id unico de una padre en caso de tener devuelve 1
+     * @param $padre
+     * @return int
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_id_father($padre){
         $query = $this->db->query("select id_metadato from metadatos where lower(replace(metadato, ' ', ''))='".$padre."'");
         //echo "select parentid from metadatos where lower(replace(metadato, ' ', ''))='".$padre."'";
@@ -156,6 +233,16 @@ class User_model extends CI_Model{
 
     }
 
+    /**
+     * Funcion para obtener el id de un hijo metadato
+     * @param $parentid padre inmediato de un metadato
+     * @param $hijo metadato
+     * @return mixed retorna id del metadato
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_id_son($parentid, $hijo){
         $query = $this->db->query("select id_metadato from metadatos where lower(replace(metadato, ' ', ''))='".$hijo."' and parentid=$parentid");
 
@@ -169,6 +256,10 @@ class User_model extends CI_Model{
      * Esta función devuelve el metadato  categoria resultado de la busqueda en el estandar del usuario
      * @param $suppadre
      * @return mixed Se retorna el metadato(nombre) del padre padre
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
     public function get_metadato_father($suppadre){
         $this->db->select("metadato");
@@ -190,6 +281,10 @@ class User_model extends CI_Model{
      * @param $padre Padre que tiene un padre y a su vez es hijo
      * @param $oa Consecutivo del OA
      * @return bool Devuleve false sino existe, o devuelve un array con los datos del oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
 
     public function exists_oa_table($suppadre, $padre, $oa){
@@ -212,6 +307,10 @@ class User_model extends CI_Model{
      * @param $padre Padre que tiene un padre y a su vez es hijo
      * @param $oa Consecutivo del OA
      * @return bool Devuleve false sino existe, o devuleve un array con los datos del oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
 
     public function exists_oa_category_multiple($suppadre, $oa){
@@ -236,6 +335,10 @@ class User_model extends CI_Model{
      * @param $hijo Metadato hoja
      * @param $dato dato referenciado
      * @param $oa   consecutivo del oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
 
     public function insert_metadato_oa_table($supfather,$padre, $hijo, $dato,$oa){
@@ -255,6 +358,10 @@ class User_model extends CI_Model{
      * @param $hijo Metadato hoja
      * @param $dato dato referenciado
      * @param $oa   consecutivo del oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
 
     public function insert_metadato_oa_category_multiple($supfather,$padre, $hijo, $dato,$oa){
@@ -274,6 +381,10 @@ class User_model extends CI_Model{
      * @param $padre Padre que tiene como padre a $supfather
      * @param $hijo Metadato hoja
      * @param $dato dato referenciado
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
 
     public function update_metadato_oa_table($id,$supfather,$padre, $hijo, $dato){
@@ -292,6 +403,10 @@ class User_model extends CI_Model{
      * @param $padre Padre que tiene como padre a $supfather
      * @param $hijo Metadato hoja
      * @param $dato dato referenciado
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
 
     public function update_metadato_oa_category_multiple($id,$supfather,$padre, $hijo, $dato){
@@ -307,6 +422,10 @@ class User_model extends CI_Model{
      * @param $id Consecutivo de la tabla
      * @param $supfather Superpadre que no tiene un padre
      * @param $padre Padre que tiene a su vez un padre
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
      */
     public function delete_metadato_oa_table($id,$supfather,$padre){
 
@@ -314,7 +433,15 @@ class User_model extends CI_Model{
         $this->db->delete("".$supfather."_".$padre);
     }
 //*********************************Consultas a la bd*************************************
-
+    /**
+     * Obtiene el xml de un oa
+     * @param $id_oa id del oa
+     * @return mixed retorna el xml del metadato
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_xml($id_oa){
         $this->db->select("xmlo");
         $this->db->from("lo");
@@ -324,6 +451,16 @@ class User_model extends CI_Model{
         return $result[0]["xmlo"];
     }
 
+    /**
+     * Filtra oa por coleccion y subcoleccion
+     * @param string $filterco id coleccion
+     * @param string $filtersub id sub coleccion
+     * @return mixed retorna id oas filtrados
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_existing_oas($filterco = "0", $filtersub = "0"){
         $this->db->select("id_oa");
         $this->db->from("oas");
@@ -337,6 +474,15 @@ class User_model extends CI_Model{
         return $query->result_array();
     }
 
+    /**
+     * Funcion que obtiene toda la informacion de un metadato
+     * @param $metadato metadato a buscar
+     * @return int uno en caso de no existir
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_info_metadato($metadato){
         $query = $this->db->query("select * from metadatos where id_metadato=$metadato");
         //echo "select parentid from metadatos where lower(replace(metadato, ' ', ''))='".$padre."'";
@@ -348,6 +494,17 @@ class User_model extends CI_Model{
         }
     }
 
+    /**
+     * Funcion que consulta un metadato que no se encuentra en la tabla oas
+     * @param $padre padre inmediato del metadato
+     * @param $hijo metadato
+     * @param $oa id del oa
+     * @return string retorna array en caso de existir o false en caso de no encontrarlo
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function consult_metadato_oa_table($padre, $hijo, $oa){
         $this->db->select($padre."_".$hijo);
         $this->db->from("oas");
@@ -360,6 +517,18 @@ class User_model extends CI_Model{
         }
     }
 
+    /**
+     * Consulta si el resultado de la busqueda pertenece a un oa
+     * @param $padre padre inmediato del metadato
+     * @param $hijo metadato
+     * @param $oa id del oa
+     * @param $words array de palabras
+     * @return bool true si existe o esta presente en la busqueda, false no existe o no cumple con las reglas de busqueda
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function consult_metadato_oa_table_search($padre, $hijo, $oa, $words){
         $this->db->select($padre."_".$hijo);
         $this->db->from("oas");
@@ -382,6 +551,19 @@ class User_model extends CI_Model{
         }
     }
 
+    /**
+     * funcion que busca el dato de un metadato no presente en la tabla oas
+     * @param $supfather Padre inmediato del padre inmediato del padre
+     * @param $padre padre inmediato del metadato
+     * @param $hijo metadato
+     * @param $oa id oa
+     * @return mixed retorna el dato del metadato a buscar
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     *
+     */
     public function consult_oa_table($supfather, $padre, $hijo, $oa){
         if($supfather==$padre){
             $this->db->select($supfather."_".$hijo);
@@ -398,6 +580,19 @@ class User_model extends CI_Model{
 
     }
 
+    /**
+     * Busca en una tabla el dato de un metadato
+     * @param $supfather Padre inmediato del padre inmediato del padre
+     * @param $padre padre inmediato del metadato
+     * @param $hijo metadato
+     * @param $oa id oa
+     * @param $words palabras del usuario
+     * @return bool true en caso de existir, false no cumple con reglas de busqueda
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function consult_oa_table_search($supfather, $padre, $hijo, $oa, $words){
         if($supfather==$padre){
             $this->db->select($supfather."_".$hijo);
@@ -439,6 +634,15 @@ class User_model extends CI_Model{
 
     }
 
+    /**
+     * Chequea si existe si existe un oa en la tabla lo
+     * @param $oa id oa
+     * @return bool true si existe false no existe
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function exists_oa_in_lo($oa){
         $this->db->select("*");
         $this->db->from("lo");
@@ -451,22 +655,54 @@ class User_model extends CI_Model{
         }
     }
 
+    /**
+     * Funcion que busca los metadatos a mostrar dados por el usuario
+     * @return mixed metadatos a mostrar
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_show_metadata(){
 
         $query = $this->db->get_where("metadatos", array("mostrar" => "true"));
         return $query->result_array();
     }
 
+    /**
+     * Funcion que busca los metadatos a mostrar y ocultados dados por el usuario
+     * @return mixed metadatos a mostrar y ocultos
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_show_hide_metadata(){
         $query = $this->db->get_where("metadatos", array("show_hide_metadata" => "true"));
         return $query->result_array();
     }
 
+    /**
+     * Funcion que busca los metadatos a obtener los metadatos que son parte de la busqueda
+     * @return mixed metadatos a mostrar y ocultos
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_searcheable_metadata(){
         $query = $this->db->get_where("metadatos", array("is_searchable" => "true"));
         return $query->result_array();
     }
 
+    /**
+     * Funcion que busca que usuario subieron oas y su pertenencia
+     * @return mixed array con los datos del usuario y id de los oas
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function get_users_upload_oas(){
         $this->db->select("users.iduser, users.name, users.lastname, lo.idlo, lo.insertiondate");
         $this->db->from("users, lo");
@@ -474,12 +710,39 @@ class User_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    /**
+     * funcion para obtener la coleccion en que fue insertado un oa
+     * @param $idoa id oa
+     * @return mixed dato con la colecion de un oa
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
+    public function get_collection_oa($idoa){
+        $this->db->select("idcollection");
+        $this->db->from("oas");
+        $this->db->where("id_oa", $idoa);
+        $query = $this->db->result_array();
+        return $query[0]["idcollection"];
+    }
 //************************Consultas BD**********************************
+    /**
+     * Insertar xml
+     * @param $xml header xml
+     * @param $oa id oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function insert_xml($xml, $oa){
+        $collection = $this->get_collection_oa($oa);
+        $arr = $this->session->userdata("logged_in");
         $data = array(
             "idlo" => $oa,
-            "idsubcollection" => 1,
-            "iduser" => 1,
+            "idsubcollection" => $collection,
+            "iduser" => $arr["id"],
             "insertiondate" => date("Y-m-d"),
             "deleted" => "false",
             "xmlo" => $xml
@@ -488,12 +751,31 @@ class User_model extends CI_Model{
         $this->db->insert("lo", $data);
     }
 
+    /**
+     * Funcion para actualizar xml de un oa
+     * @param $xml xml a actualizar
+     * @param $oa id oa
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     public function update_xml($xml, $oa){
         $this->db->query("update lo set xmlo=concat(xmlo,'".$xml."') where idlo=".$oa);
     }
 
-    //**********************************Actualizar Collection y SubCollection*****************
 
+
+    //**********************************Actualizar Collection y SubCollection*****************
+    /**
+     * Funcion para actualizar la coleccion de un oa
+     * @param $id_oa id oa
+     * @param $collection id coleccion
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     function update_collection($id_oa, $collection){
         $data = array(
           "idcollection" => $collection
@@ -502,6 +784,15 @@ class User_model extends CI_Model{
         $this->db->update("oas", $data);
     }
 
+    /**
+     * Funcion para actualizar una subcoleccion de un oa
+     * @param $id_oa id oa
+     * @param $subcollection id subcoleccion
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_model
+     */
     function update_subcollection($id_oa, $subcollection){
         $data = array(
             "idsubcollection" => $subcollection

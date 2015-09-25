@@ -1,21 +1,22 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 15/02/15
- * Time: 04:51 PM
- */
-
-/**
  * Esta clase contiene los metodos de insercion actualizacion y borrado de metadatos pertenecientes
  * al estandar proporcionado por el usuario
  * Class User_standard_model
+ * @Autor Danny Alexander Trujillo
+ * @Category Modelo
+ * @Package Model
+ * @SubPackage user_standard_model
  *
  */
 class User_standard_model extends CI_Model{
     /**
      * Funcíon que busca y retorna la estructura el estandar de metadatos propocionado por el usuario
      * @return mixed Se retorna un array con los metadatos proporcionados por el usuario
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_standard_model
      */
     public function get_user_standard(){
         $this->db->select("*");
@@ -25,8 +26,13 @@ class User_standard_model extends CI_Model{
         return $query->result_array();
     }
 
-    /**Retorna el consecutivo inmediatamente siguiente al ultimo id del oa que se tiene
-     * @return int
+    /**
+     * Retorna el consecutivo inmediatamente siguiente al ultimo id del oa que se tiene
+     * @return int o array de acuerdo ha si existe o no un oa
+     * @Autor Danny Alexander Trujillo
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage user_standard_model
      */
     public function get_last_row(){
         $this->db->select("id_oa");
@@ -41,135 +47,7 @@ class User_standard_model extends CI_Model{
         }
     }
 
-    /**
-     * Se revisa que exista al menos una fila en la tabla
-     * @param $oa
-     * @return bool
-     */
-    public function exists_insert_oa($oa){
-        $this->db->select("*");
-        $this->db->from("oas");
-        $this->db->where("id_oa",$oa);
-        $query = $this->db->get();
-        if($query->num_rows()>0){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
-    /**En caso de no existir fila con el consecutivo del oa se insertara los datos
-     * @param $padre
-     * @param $hijo
-     * @param $dato
-     */
-    public function insert_metadato_oa_suppadre($padre, $hijo,$dato){
-        $data = array(
-            "".$padre."_".$hijo => $dato
-        );
-        $this->db->insert("oas", $data);
-    }
-
-    /**
-     * En caso de que exista algun dato se actualizara la fila
-     * @param $padre
-     * @param $hijo
-     * @param $dato
-     * @param $oa
-     */
-    public function update_metadato_oa_suppadre($padre, $hijo,$dato, $oa){
-        $data = array(
-            "".$padre."_".$hijo => $dato
-        );
-        $this->db->where("id_oa", $oa);
-        $this->db->update("oas", $data);
-    }
-
-    /**
-     * @param $padre
-     * @return mixed Se devuelve el valor del parentid del padre;
-     */
-    public function get_parentid($padre){
-        $query = $this->db->query("select parentid from metadatos where lower(replace(metadato, ' ', ''))='".$padre."'");
-        $dato = $query->result_array();
-        return $dato[0]["parentid"];
-    }
-
-    /**
-     * @param $suppadre
-     * @return mixed Se retorna el metadato(nombre) del padre padre
-     */
-    public function get_metadato_father($suppadre){
-        $this->db->select("metadato");
-        $this->db->from("metadatos");
-        $this->db->where("id_metadato", $suppadre);
-        $query = $this->db->get();
-        $dato = $query->result_array();
-        return $dato[0]["metadato"];
-    }
-
-    public function exists_oa_table($suppadre, $padre, $oa){
-        $this->db->select("*");
-        $this->db->from($suppadre."_".$padre);
-        $this->db->where("id_oa", $oa);
-        $this->db->order_by("id".$suppadre."_".$padre, "ASC");
-        $query = $this->db->get();
-        if($query->num_rows()>0){
-            return $query->result_array();
-        }else{
-            return false;
-        }
-
-    }
-
-    /**
-     * Esta función inserta datos en una tabla determinada, identificandola con los parametros
-     * de superpadre, padre e hijo y este se asocia al id del objeto de aprendizaje
-     * @param $supfather padre que no tiene otro padre
-     * @param $padre Padre que tiene como padre a $supfather
-     * @param $hijo Metadato hoja
-     * @param $dato dato referenciado
-     * @param $oa   consecutivo del oa
-     */
-
-    public function insert_metadato_oa_table($supfather,$padre, $hijo, $dato,$oa){
-        $data = array(
-            "".$padre."_".$hijo => $dato,
-            "id_oa" => $oa
-        );
-        $this->db->insert(''.$supfather.'_'.$padre, $data);
-
-    }
-
-    /**
-     * Esta función actualizara datos en una tabla determinada, identificandola con los parametros
-     * de superpadre, padre e hijo y este se asocia al id del objeto de aprendizaje
-     * @param $id consecutivo de la tabla, este identifica que dato debe actualizar y en que fila
-     * @param $supfather padre que no tiene otro padre
-     * @param $padre Padre que tiene como padre a $supfather
-     * @param $hijo Metadato hoja
-     * @param $dato dato referenciado
-     */
-
-    public function update_metadato_oa_table($id,$supfather,$padre, $hijo, $dato){
-        $data = array(
-            "".$padre."_".$hijo => $dato
-        );
-        $this->db->where("id".$supfather."_".$padre, $id);
-        $this->db->update("".$supfather."_".$padre, $data);
-    }
-
-    /**
-     * Función que borra la fila de una tabla identificando su consecutivo
-     * @param $id Consecutivo de la tabla
-     * @param $supfather Superpadre que no tiene un padre
-     * @param $padre Padre que tiene a su vez un padre
-     */
-    public function delete_metadato_oa_table($id,$supfather,$padre){
-
-        $this->db->where("id".$supfather."_".$padre, $id);
-        $this->db->delete("".$supfather."_".$padre);
-    }
 
 }
 ?>

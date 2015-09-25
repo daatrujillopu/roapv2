@@ -1,22 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 28/05/15
- * Time: 05:19 PM
- */
-
-/**
  * Class Installer_model
  * Clase que maneja metodos de insercion apoyando el proceso de instalacion de ROAP
  * @Access Public
- * @Autor Danny Alexander Trujillo Pulgarin
+ * @Autor Danny Alexander Trujillo Pulgarin *
+ * @Category Modelo
+ * @Package Model
+ * @SubPackage installer_model
  */
 class Installer_model extends CI_Model{
     /**
      * Constructor para cargar librerias.
      * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage installer_model
      */
     public function __construct(){
         parent::__construct();
@@ -27,6 +26,9 @@ class Installer_model extends CI_Model{
      * @return mixed retorna un array con toda la informacion consignada en la tabla metadatos
      * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage installer_model
      */
     public function get_metadatos_table(){
         $this->db->select("*");
@@ -39,8 +41,11 @@ class Installer_model extends CI_Model{
     /**
      * Metodo para ejecutar consultas sql
      * @param $sql string con la consulta sql
-     * Access Public
+     * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage installer_model
      */
     public function execute_query($sql){
         $query = $this->db->query($sql);
@@ -49,8 +54,11 @@ class Installer_model extends CI_Model{
 
     /**
      * metodo que crea la tabla usuarios, que brinda sorporte para loggin de nuevos usuarios
-     * Access Public
+     * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Modelo
+     * @Package Model
+     * @SubPackage installer_model
      */
     public function create_table_user(){
         $sql = "create table if not exists users(

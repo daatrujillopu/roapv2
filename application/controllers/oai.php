@@ -1,12 +1,5 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 14/05/15
- * Time: 05:34 PM
- */
-
-/**
  * Class Oai
  * Clase que maneja el estandar OAIPMH para el cosechado de repositorios
  * @Access Public
@@ -16,7 +9,9 @@
  * @Subpackage Controladores/oai
  */
 class Oai extends CI_Controller{
-
+    /**
+     * Constructor de la clase
+     */
     function __construct(){
         parent::__construct();
         $this->load->library("OAIPMH");

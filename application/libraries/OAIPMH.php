@@ -1,6 +1,4 @@
 <?php
-
-//require ('./modelo/conexion.php');
 define("SERVER", "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME']);
 
 

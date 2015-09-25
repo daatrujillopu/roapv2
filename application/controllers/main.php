@@ -1,14 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: danny
- * Date: 19/07/15
- * Time: 03:46 PM
- */
-
-/**
- * Class Main
  * Clase de llegada de usuarios del repositorio mostrando por default todos los objetos de aprendizaje
+ * Class Main
  * @Access Public
  * @Autor Danny Alexander Trujillo Pulgarin
  * @Category Usuarios_No_Registrados

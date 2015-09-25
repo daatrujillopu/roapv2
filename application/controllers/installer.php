@@ -1,11 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: danny
- * Date: 28/05/15
- * Time: 03:13 PM
- */
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Class Installer
@@ -17,6 +10,9 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
  * @Subpackage Controladores/installer
  */
 class Installer extends CI_Controller{
+    /**
+     * Constructor de la clase
+     */
     public function __construct(){
         parent::__construct();
         $this->load->model("installer_model");

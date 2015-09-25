@@ -1,22 +1,22 @@
-<?php
-if (!defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * Created by PhpStorm.
- * User: danny
- * Date: 29/06/15
- * Time: 03:17 PM
- */
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
- * Class Session Clase para le manejo de sessiones y login de usuarios
- * @Access Public
- * @Autor Danny Alexander Trujillo Pulgarin
- * @Category Usuarios_No_Registrados
- * @Package Controladores
- * @Subpackage Controladores/session
- */
+    /**
+     * Class Session Clase para le manejo de sessiones y login de usuarios
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/session
+     */
 class Session extends CI_Controller{
-
+    /**
+     * Constructor de la clase
+     * @Access Public
+     * @Autor Danny Alexander Trujillo Pulgarin
+     * @Category Usuarios_No_Registrados
+     * @Package Controladores
+     * @Subpackage Controladores/session
+     */
     function __construct()
     {
         parent::__construct();

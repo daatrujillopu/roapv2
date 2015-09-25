@@ -1,12 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: danny
- * Date: 22/02/15
- * Time: 06:22 PM
- */
-
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Esta clase se encarga de generar formularios automaticos a partir de
  * @Access public
@@ -263,8 +255,8 @@ class User extends CI_Controller{
         }
 
     }
-
     /**
+     * Funcion para chequear el id de un oa
      * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
      * @Category Usuarios_Registrados
@@ -272,7 +264,6 @@ class User extends CI_Controller{
      * @Subpackage Controladores/Usuario
      * @return int Retorna el id consecutivo del oa, en caso de que haya cambiado cambiar el id
      */
-
     private function check_id_oa(){
         if($this->session->userdata("logged_in")){
             $actualid = $this->standard->get_actual_id();
@@ -284,8 +275,8 @@ class User extends CI_Controller{
         }
 
     }
-
     /**
+     * Funcion que contiene el estandar de cosechado OAIPMH
      * @Access Public
      * @Autor Danny Alexander Trujillo Pulgarin
      * @Category Usuarios_Registrados
